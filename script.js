@@ -2,8 +2,7 @@
 //made by stuartt_mcoded @ mcoded.xyz
 
 //TODO: Add saving/loading somehow. cookies?
-//TODO: Add requirements.
-//TODO: Better Item Shop Sorting/Search Bar
+//TODO: Better Item Shop Sorting. Search bar?
 
 const version = "0.1.0"
 var score=0
@@ -62,7 +61,8 @@ function loadStore() {
 
     let h5 = document.createElement("h2");
     h5.setAttribute("id",`h5_${i}`);
-    h5.innerHTML = items[i].name + " - " + items[i].price + " Points";
+    //h5.innerHTML = items[i].name + " - " + items[i].price + " Points"; //yuck
+    h5.innerHTML = `${items[i].name} - ${items[i].price} Points`;
     news.appendChild(h5);
 
     let p = document.createElement("p");
