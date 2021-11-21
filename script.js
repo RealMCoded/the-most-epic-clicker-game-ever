@@ -4,7 +4,7 @@
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
 
-const version = "0.1.0"
+const version = "0.1.1"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 var score=0
