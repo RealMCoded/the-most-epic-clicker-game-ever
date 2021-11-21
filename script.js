@@ -5,6 +5,8 @@
 //TODO: Better Item Shop Sorting. Search bar?
 
 const version = "0.1.0"
+document.getElementById("ver").innerHTML= `Version ${version}`
+
 var score=0
 var angle = 0
 var daman = document.getElementById('img')

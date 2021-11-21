@@ -1,2 +1,2 @@
-start "" http://localhost:2419
-python -m http.server 2419
+start "" http://localhost:25565
+python -m http.server 25565
