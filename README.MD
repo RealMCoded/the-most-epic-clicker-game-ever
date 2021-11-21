@@ -1,6 +1,6 @@
 # THE MOST EPIC CLICKER GAME EVER!!!!!
 
-[Click here to launch the game.](https://google.com/)
+[Click here to launch the game.](https://realmcoded.github.io/the-most-epic-clicker-game-ever/)
 
 This is a game i made in school during breaks to improve my js skills.
 
