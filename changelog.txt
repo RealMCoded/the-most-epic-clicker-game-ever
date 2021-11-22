@@ -1,0 +1,7 @@
+Version 0.1.1
+- Item Icons
+- Link Embeds
+- Links to source code and github repo
+
+Version 0.1.0
+- Initial Version
