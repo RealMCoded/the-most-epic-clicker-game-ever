@@ -195,5 +195,4 @@ var rotclock = setInterval(function() {
   if (angle > 359) {angle = 0}
   angle = angle + 1
   document.getElementById('img').style.transform = `rotate(${angle}deg)`;
-  //document.getElementById('img2').style.transform = `rotate(${angle}deg)`;
 }, 50);
