@@ -4,7 +4,7 @@
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
 
-const version = "0.1.2.dev"
+const version = "0.1.3.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -12,6 +12,7 @@ const chaching = new sound('buy.mp3')
 
 var score=0
 var angle = 0
+var curskn=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
@@ -34,7 +35,7 @@ var json = {
   ],
   "skins":[
     {"name":"Default", "price":0, "description":"Default smile"},
-    {"name":"Hat", "price":25, "description":"cool hat"},
+    {"name":"ASCII Smile", "price":25, "description":":)"},
     {"name":"Space Visor", "price":9500, "description":"plz gift or else blam gribble is my dad and he can banz u!!!!"}
   ]
 }
@@ -129,10 +130,10 @@ var itemloop = setInterval(function() {
 
 function clickev() {
   document.getElementById("img").addEventListener("mousedown", function() {
-    document.getElementById("img").src='man2.png'
+    document.getElementById("img").src=`./skin/${curskn}/1.png`
   });
   document.getElementById("img").addEventListener("mouseup", function() {
-    document.getElementById("img").src='man.png'
+    document.getElementById("img").src=`./skin/${curskn}/0.png`
   });
   score = score +1
   if (itemsOwned.includes('0')) {
@@ -238,12 +239,12 @@ function loadSkins() {
 }
 
 function buyskin(skn) {
-  let want = arguments[0] //easier to define it here than call arguments[0] every time lol
+  let want = skn //easier to define it here than call arguments[0] every time lol
 
   if (confirm("Are you sure you want to buy this skin?")){
     if (skins[want].price <= score) {
       skinsOwned.push(want) //Add it to a list so the game knows you have it
-      score = score - items[want].price
+      score = score - skins[want].price
       //document.getElementById("sco").innerHTML= `Score: ${score}`
 
       //Update store to make item out of stock
@@ -256,6 +257,7 @@ function buyskin(skn) {
       //document.getElementById(`hr_${want}`).remove()
       chaching.stop()
       chaching.play()
+      equipskin(skn)
     } else {
         var rem = skins[want].price - score
         alert(`You don't have enough points!\nYou need ${Math.trunc(rem)} more!`)
@@ -264,7 +266,16 @@ function buyskin(skn) {
 }
 
 function equipskin(skn) {
-  alert("TBA")
+  //Set old button text to say "Equip
+  document.getElementById(`skn_btn_${curskn}`).innerHTML = "Equip"
+  document.getElementById(`skn_btn_${curskn}`).disabled = false
+
+  //Set new button text to say "Equipped"
+  document.getElementById(`skn_btn_${skn}`).innerHTML = "Equipped";
+  document.getElementById(`skn_btn_${skn}`).disabled = true
+
+  curskn = skn
+  daman.src=`./skin/${skn}/0.png`
 }
 
 //Debug Funct.
