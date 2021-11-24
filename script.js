@@ -4,7 +4,7 @@
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
 
-const version = "0.1.2"
+const version = "0.1.2.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -14,6 +14,7 @@ var score=0
 var angle = 0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
+var skinsOwned = [null, '0']
 var json = {
   "items":[
     {"name":"Click x2", "price":100, "description":"Gives you x2 your current click rate", "requireditem":null},
@@ -32,6 +33,7 @@ var json = {
     //{"name":"Chance - Double Or Nothing", "price":NaN, "description":"50% Chance that you'll get double the points you bet, 50% Chance you loose what you bet.", "requireditem":null} //I'll add this """"""""""later"""""""""""
   ],
   "skins":[
+    {"name":"Default", "price":0, "description":"Default smile"},
     {"name":"Hat", "price":25, "description":"cool hat"},
     {"name":"Space Visor", "price":9500, "description":"plz gift or else blam gribble is my dad and he can banz u!!!!"}
   ]
@@ -43,7 +45,7 @@ var skins = json.skins
 console.log("STORE ITEMS")
 console.table(json.items)
 
-console.log("skin ITEMS")
+console.log("SKIN ITEMS")
 console.table(json.skins)
 
 //UNUSED
@@ -183,6 +185,86 @@ function buyitem(itm) {
       }
     }
   }
+}
+
+//Skins code
+function loadSkins() {
+  /*fetch("items.json")
+  .then(responce => responce.json())
+  .then (data => {var json = JSON.parse(data)})*/ //TODO: get file loading working
+
+  var news = document.getElementsByClassName("skin")[0]; //Easier to define this here than to call this long string every time
+
+  //Repeat until i is equal to the json's size.
+  for(var i = 0; i < skins.length; i++) {
+
+    let img = document.createElement("img")
+    if (UrlExists(`./store/skins/${i}.png`)) {img.setAttribute("src",`./store/skins/${i}.png`)} else {img.setAttribute("src",`./store/skins/missing.png`)}
+    img.setAttribute("id",`skn_img_${i}`);
+    news.appendChild(img)
+
+    let h5 = document.createElement("h2");
+    h5.setAttribute("id",`skn_h5_${i}`);
+    //h5.innerHTML = items[i].name + " - " + items[i].price + " Points"; //yuck
+    h5.innerHTML = `${skins[i].name} - ${skins[i].price} Points`;
+    news.appendChild(h5);
+
+    let p = document.createElement("p");
+    p.setAttribute("id",`skn_p_desc_${i}`);
+    p.innerHTML = skins[i].description;
+    news.appendChild(p);
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Buy";
+    btn.setAttribute("id",`skn_btn_${i}`);
+    btn.setAttribute("onclick",`buyskin('${i}');`);
+    //btn.name = "formBtn";
+    news.appendChild(btn);
+
+    let br = document.createElement("hr")
+    br.setAttribute("id",`skn_hr_${i}`);
+    news.appendChild(br)
+
+    console.log(`Loaded skin ${i}`)
+  }
+  console.log("Loaded skin store.")
+
+  //After loading, Remove the placeholder text
+  try {
+    document.getElementById("sknload").remove()
+  } catch { //If failed, put an error
+    console.log("Element \"storeload\" was already removed!")
+  }
+}
+
+function buyskin(skn) {
+  let want = arguments[0] //easier to define it here than call arguments[0] every time lol
+
+  if (confirm("Are you sure you want to buy this skin?")){
+    if (skins[want].price <= score) {
+      skinsOwned.push(want) //Add it to a list so the game knows you have it
+      score = score - items[want].price
+      //document.getElementById("sco").innerHTML= `Score: ${score}`
+
+      //Update store to make item out of stock
+      //document.getElementById(`img_${want}`).remove()
+      //document.getElementById(`h5_${want}`).remove()
+      //document.getElementById(`p_desc_${want}`).remove()
+      let btn = document.getElementById(`skn_btn_${want}`)
+      btn.innerHTML = "Equip";
+      btn.setAttribute("onclick",`equipskin('${want}');`);
+      //document.getElementById(`hr_${want}`).remove()
+      chaching.stop()
+      chaching.play()
+    } else {
+        var rem = skins[want].price - score
+        alert(`You don't have enough points!\nYou need ${Math.trunc(rem)} more!`)
+    }
+  }
+}
+
+function equipskin(skn) {
+  alert("TBA")
 }
 
 //Debug Funct.
