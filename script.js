@@ -130,11 +130,11 @@ var itemloop = setInterval(function() {
 }, 50);
 
 function clickev() {
-  document.getElementById("img").addEventListener("mousedown", function() {
-    document.getElementById("img").src=`./skin/${curskn}/1.png`
+  daman.addEventListener("mousedown", function() {
+    daman.src=`./skin/${curskn}/1.png`
   });
-  document.getElementById("img").addEventListener("mouseup", function() {
-    document.getElementById("img").src=`./skin/${curskn}/0.png`
+  daman.addEventListener("mouseup", function() {
+    daman.src=`./skin/${curskn}/0.png`
   });
   score = score +1
   if (itemsOwned.includes('0')) {
@@ -231,6 +231,12 @@ function loadSkins() {
   }
   console.log("Loaded skin store.")
 
+  //Change Default skin to "Owned"
+  let btn = document.getElementById(`skn_btn_0`)
+  btn.innerHTML = "Equipped";
+  btn.disabled = true
+  btn.setAttribute("onclick",`equipskin('0');`);
+
   //After loading, Remove the placeholder text
   try {
     document.getElementById("sknload").remove()
@@ -318,5 +324,5 @@ function sound(src) {
 var rotclock = setInterval(function() {
   if (angle > 359) {angle = 0}
   angle = angle + 1
-  document.getElementById('img').style.transform = `rotate(${angle}deg)`;
+  daman.style.transform = `rotate(${angle}deg)`;
 }, 50);
