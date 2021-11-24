@@ -13,6 +13,6 @@ There aren't really any requirements since this *is* as web app. However, if you
 
 ## Offline Play
 
-[Click here to download.](https://github.com/RealMCoded/the-most-epic-clicker-game-ever/archive/refs/heads/master.zip)
-
+[Click here to download the latest stable version](https://github.com/RealMCoded/the-most-epic-clicker-game-ever/archive/refs/heads/master.zip)
+[Click here to download the latest dev version](https://github.com/RealMCoded/the-most-epic-clicker-game-ever/archive/refs/heads/dev.zip)
 Speaking of playing offline, Double check that you have [Python](https://www.python.org/downloads/) installed and run `start_local.bat` (quickest way) or `host-test-server.bat` (easier to set a custom IP and Port) to start a localhost server.
