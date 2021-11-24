@@ -3,6 +3,7 @@
 
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
+//TODO: CHange all references of document.getElementById('img'//"img") to 'daman' (for ease of managment)
 
 const version = "0.1.3.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
