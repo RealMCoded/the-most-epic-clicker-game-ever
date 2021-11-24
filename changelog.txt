@@ -1,3 +1,8 @@
+Version 0.1.2
+- New sprite when clicking the face
+- Added sound when buying a thing
+- Other small changes
+
 Version 0.1.1
 - Item Icons
 - Link Embeds

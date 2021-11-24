@@ -4,8 +4,11 @@
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
 
-const version = "0.1.1"
+const version = "0.1.2"
 document.getElementById("ver").innerHTML= `Version ${version}`
+
+//Init "some" SFX
+const chaching = new sound('buy.mp3')
 
 var score=0
 var angle = 0
@@ -25,21 +28,23 @@ var json = {
     {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":null},
     {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":null},
     {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
+    //{"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null},
+    //{"name":"Chance - Double Or Nothing", "price":NaN, "description":"50% Chance that you'll get double the points you bet, 50% Chance you loose what you bet.", "requireditem":null} //I'll add this """"""""""later"""""""""""
   ],
-  "cosmetics":[
+  "skins":[
     {"name":"Hat", "price":25, "description":"cool hat"},
     {"name":"Space Visor", "price":9500, "description":"plz gift or else blam gribble is my dad and he can banz u!!!!"}
   ]
 }
 
 var items = json.items
-var cosmetics = json.cosmetics
+var skins = json.skins
 
 console.log("STORE ITEMS")
 console.table(json.items)
 
-console.log("COSMETIC ITEMS")
-console.table(json.cosmetics)
+console.log("skin ITEMS")
+console.table(json.skins)
 
 //UNUSED
 //const itemList = ['Auto Clicker', 'Juice']
@@ -102,7 +107,7 @@ function loadStore() {
   }
 }
 
-//Item Loop (every 50ms)
+//Item Loop (every 50 or so ms)
 var itemloop = setInterval(function() {
   console.log("ItemLoopPing!!!")
 
@@ -121,6 +126,12 @@ var itemloop = setInterval(function() {
 }, 50);
 
 function clickev() {
+  document.getElementById("img").addEventListener("mousedown", function() {
+    document.getElementById("img").src='man2.png'
+  });
+  document.getElementById("img").addEventListener("mouseup", function() {
+    document.getElementById("img").src='man.png'
+  });
   score = score +1
   if (itemsOwned.includes('0')) {
     score = score +1
@@ -161,6 +172,8 @@ function buyitem(itm) {
       if (items[want].requireditem !== null) {document.getElementById(`p_rec_${want}`).remove()}
       document.getElementById(`btn_${want}`).remove()
       document.getElementById(`hr_${want}`).remove()
+      chaching.stop()
+      chaching.play()
     } else {
       if (!itemsOwned.includes(items[want].requireditem)) {
         alert(`You need item ${items[items[want].requireditem].name} to get this.`)
@@ -188,6 +201,23 @@ function UrlExists(url)
     http.open('HEAD', url, false);
     http.send();
     return http.status!=404;
+}
+
+//thx to https://www.w3schools.com/graphics/game_sound.asp 4 this code xoxo
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.stop = function(){
+    this.sound.pause();
+    this.sound.currentTime = 0;
+  }
+  this.play = function(){
+    this.sound.play();
+  }
 }
 
 //Rotating man thing. some wise man named "StackOverflow" told me to put this at the bottom of the file.
