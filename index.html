@@ -20,7 +20,7 @@
     <title>the most epic clicker game ever!!!</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body onload="loadStore()">
+  <body id="dabase" onload="loadStore(); loadSkins()">
   <center>
   <audio id="mus" controls loop autoplay>
     <source src="loop.mp3" type="audio/mpeg">
@@ -34,7 +34,7 @@
     <br>
     <br>
     <br>
-    <img src="man.png" id="img" onclick="clickev();" alt=":)"/>
+    <img src="./skin/0/0.png" id="img" onclick="clickev();" alt="png thing broke srry"/>
     <br>
     <br>
     <br>
@@ -52,15 +52,17 @@
     <h1 id="storeload">Loading Store Listings...</h1>
   </div>
   <br>
-  <!--<div class="skin">
-    <h1>Skinss</h1>
+  <div class="skin">
+    <h1>Da Skin Shop</h1>
     <h3>look cool-r</h3>
+    <hr>
     <h1 id="sknload">Loading Skins</h1>
-  </div>-->
+  </div>
   <footer>
     <p id="ver">Version x.x.x</p>
     <p>Created by <a href="https://mcoded.xyz" target="_blank">mcoded.xyz</a><br><a href="about.html" target="popup" onclick="window.open('about.html','name','width=819,height=658')">About this site</a> - <a href="changelog.txt" target="popup" onclick="window.open('changelog.txt','name','width=819,height=658')">Changelogs</a> - <a href="https://github.com/RealMCoded/the-most-epic-clicker-game-ever" target="_blank">GitHub</a></p>
   </footer>
+  <!--Run da game's code-->
    <script src="script.js"></script>
   </body>
 </html>
