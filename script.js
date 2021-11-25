@@ -3,7 +3,6 @@
 
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
-//TODO: CHange all references of document.getElementById('img'//"img") to 'daman' (for ease of managment)
 
 const version = "0.1.3.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
@@ -32,12 +31,14 @@ var json = {
     {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":null},
     {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
     //{"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null},
-    //{"name":"Chance - Double Or Nothing", "price":NaN, "description":"50% Chance that you'll get double the points you bet, 50% Chance you loose what you bet.", "requireditem":null} //I'll add this """"""""""later"""""""""""
+    //{"name":"Chance - Double Or Nothing", "price":NaN, "description":"50% Chance that you'll get double all your points you bet, 50% Chance you loose what you bet.", "requireditem":null} //I'll add this """"""""""later"""""""""""
   ],
   "skins":[
     {"name":"Default", "price":0, "description":"Default smile"},
     {"name":"ASCII Smile", "price":25, "description":":)"},
-    {"name":"Space Visor", "price":9500, "description":"plz gift or else blam gribble is my dad and he can banz u!!!!"}
+    {"name":"Default but cooler", "price":125, "description":"b sides"},
+    {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01! <br> Christmas! Just a week away!"},
+    //{"name":"Seasonal", "price":0, "description":"Changes depending on the season."},
   ]
 }
 
@@ -273,7 +274,7 @@ function buyskin(skn) {
 }
 
 function equipskin(skn) {
-  //Set old button text to say "Equip
+  //Set old button text to say "Equip"
   document.getElementById(`skn_btn_${curskn}`).innerHTML = "Equip"
   document.getElementById(`skn_btn_${curskn}`).disabled = false
 
@@ -283,6 +284,12 @@ function equipskin(skn) {
 
   curskn = skn
   daman.src=`./skin/${skn}/0.png`
+
+  //Event Skin (cricms)
+  if (skn == 3) {
+    document.body.style.background = "#f3f3f3 url('./skin/3/bg.png')";
+    document.getElementById("dabase").style.color = "white";
+  }
 }
 
 //Debug Funct.
