@@ -4,7 +4,7 @@
 //TODO: Add saving/loading somehow. cookies?
 //TODO: Better Item Shop Sorting. Search bar?
 
-const version = "0.1.3.dev"
+const version = "0.1.3"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -20,7 +20,7 @@ var json = {
   "items":[
     {"name":"Click x2", "price":100, "description":"Gives you x2 your current click rate", "requireditem":null},
     {"name":"Click x3", "price":400, "description":"Gives you x3 your current click rate", "requireditem":'0'},
-    {"name":"Click x4", "price":500, "description":"Gives you x4 your current click rate", "requireditem":'1'},
+    {"name":"Click x4", "price":550, "description":"Gives you x4 your current click rate", "requireditem":'1'},
     {"name":"Click x5", "price":700, "description":"Gives you x5 your current click rate", "requireditem":'2'},
     {"name":"Click x6", "price":900, "description":"Gives you x6 your current click rate", "requireditem":'3'},
     {"name":"Click x7", "price":1000, "description":"Gives you x7 your current click rate", "requireditem":'4'},
@@ -30,6 +30,7 @@ var json = {
     {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":null},
     {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":null},
     {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
+    {"name":"x2 your Current Score - One time use", "price":0, "description":"Double your current score by 2.<br>The catch is you can <b>only use it once</b>.", "requireditem":null},
     //{"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null},
     //{"name":"Chance - Double Or Nothing", "price":NaN, "description":"50% Chance that you'll get double all your points you bet, 50% Chance you loose what you bet.", "requireditem":null} //I'll add this """"""""""later"""""""""""
   ],
@@ -37,8 +38,7 @@ var json = {
     {"name":"Default", "price":0, "description":"Default smile"},
     {"name":"ASCII Smile", "price":25, "description":":)"},
     {"name":"Default but cooler", "price":125, "description":"b sides"},
-    {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01! <br> Christmas! Just a week away!"},
-    //{"name":"Seasonal", "price":0, "description":"Changes depending on the season."},
+    {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
   ]
 }
 
@@ -179,6 +179,11 @@ function buyitem(itm) {
       document.getElementById(`hr_${want}`).remove()
       chaching.stop()
       chaching.play()
+
+      //Buy Events
+      if (want == 12) {
+        score = score*2
+      }
     } else {
       if (!itemsOwned.includes(items[want].requireditem)) {
         alert(`You need item ${items[items[want].requireditem].name} to get this.`)
@@ -285,10 +290,13 @@ function equipskin(skn) {
   curskn = skn
   daman.src=`./skin/${skn}/0.png`
 
-  //Event Skin (cricms)
-  if (skn == 3) {
-    document.body.style.background = "#f3f3f3 url('./skin/3/bg.png')";
+  //Skin Events
+  if (skn == 3) { //Seasonal
+    document.body.style.background = "#00137F url('./skin/3/bg.png')";
     document.getElementById("dabase").style.color = "white";
+  } else { //Any other evnet
+    document.body.style.background = "#FFFFFF";
+    document.getElementById("dabase").style.color = "black";
   }
 }
 

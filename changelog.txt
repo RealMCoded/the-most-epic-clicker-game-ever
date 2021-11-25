@@ -1,5 +1,8 @@
 Version 0.1.3
-- Added Skins
+- Added Skins! The first batch are "ASCII Smile" and "Default but cooler"
+- New Christmas Event (Until 01/01!)
+- New item! x2 your Current Score - One time use - 0 Points: Double your current score by 2. The catch is you can only use it once.
+- Fixes idk
 
 Version 0.1.2
 - New sprite when clicking the face
