@@ -31,7 +31,8 @@ document.getElementById("ver").innerHTML= `Version ${version}`
 const chaching = new sound('buy.mp3')
 
 //Global events (date, other stuff later)
-const d = new Date();
+const d = new Date(); //d for date
+var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) //Check for mobile device
 
 // Init other stuff
 var score=0
@@ -77,6 +78,8 @@ console.table(json.items)
 
 console.log("SKIN ITEMS")
 console.table(json.skins)
+
+scaleToMobile()
 
 //Start of Item Related Code
 function loadStore() {
@@ -271,27 +274,33 @@ function equipskin(skn) {
   daman.src=`./skin/${skn}/0.png`
 
   //Skin Events
+
+  //Reset to normal
+  document.body.style.background = "#FFFFFF";
+  document.getElementById("dabase").style.color = "black";
+  document.body.style.fontFamily = ""
+
+  //Events
   if (skn == 4) { //Seasonal
     document.body.style.background = "#00137F url('./skin/4/bg.png')";
     document.getElementById("dabase").style.color = "white";
   } else if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
-  } else { //Any other evnet
-    document.body.style.background = "#FFFFFF";
-    document.getElementById("dabase").style.color = "black";
-    document.body.style.fontFamily = ""
   }
+  scaleToMobile()
 }
 //End of Skin Related Code
 
 //Click Event Code
 function clickev() {
+  if (!isMobile) {
   daman.addEventListener("mousedown", function() {
     daman.src=`./skin/${curskn}/1.png`
   });
   daman.addEventListener("mouseup", function() {
     daman.src=`./skin/${curskn}/0.png`
   });
+}
   score = score +1
 
   if (itemsOwned.includes('0')) {
@@ -351,3 +360,29 @@ var rotclock = setInterval(function() {
   angle = angle + 1
   daman.style.transform = `rotate(${angle}deg)`;
 }, 50);
+
+//Scale things if mobile
+function scaleToMobile(){
+  if (isMobile) {
+    if (curskn == 3){
+      daman.style.height = `240px`
+      daman.style.width = `240px`
+    } else if (curskn == 4){
+      daman.style.width = `236px`
+      daman.style.height = `236px`
+    } else {
+      daman.style.height = `160px`
+      daman.style.width = `236px`
+    }
+  }
+}
+
+//DEBUG STUFF
+function debug() {
+  let arg = arguments[0]
+
+  if (arg == "forceMobile"){
+    isMobile = true
+    scaleToMobile()
+  }
+}
