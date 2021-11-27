@@ -24,7 +24,7 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.3"
+const version = "0.1.4.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -64,6 +64,7 @@ var json = {
     {"name":"Default", "price":0, "description":"Default smile"},
     {"name":"ASCII Smile", "price":25, "description":":)"},
     {"name":"Default but cooler", "price":125, "description":"b sides"},
+    {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
     {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
   ]
 }
@@ -270,12 +271,15 @@ function equipskin(skn) {
   daman.src=`./skin/${skn}/0.png`
 
   //Skin Events
-  if (skn == 3) { //Seasonal
-    document.body.style.background = "#00137F url('./skin/3/bg.png')";
+  if (skn == 4) { //Seasonal
+    document.body.style.background = "#00137F url('./skin/4/bg.png')";
     document.getElementById("dabase").style.color = "white";
+  } else if (skn == 3) { //Modern
+    document.body.style.fontFamily = "Calibri, sans-serif"
   } else { //Any other evnet
     document.body.style.background = "#FFFFFF";
     document.getElementById("dabase").style.color = "black";
+    document.body.style.fontFamily = ""
   }
 }
 //End of Skin Related Code
