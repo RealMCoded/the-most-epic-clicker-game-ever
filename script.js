@@ -1,21 +1,47 @@
-//basic clicker game
-//made by stuartt_mcoded @ mcoded.xyz
+/*
+  _   _                                _                _             _ _      _                                                                _ _ _ 
+ | | | |                              | |              (_)           | (_)    | |                                                              | | | |
+ | |_| |__   ___   _ __ ___   ___  ___| |_    ___ _ __  _  ___    ___| |_  ___| | _____ _ __    __ _  __ _ _ __ ___   ___    _____   _____ _ __| | | |
+ | __| '_ \ / _ \ | '_ ` _ \ / _ \/ __| __|  / _ \ '_ \| |/ __|  / __| | |/ __| |/ / _ \ '__|  / _` |/ _` | '_ ` _ \ / _ \  / _ \ \ / / _ \ '__| | | |
+ | |_| | | |  __/ | | | | | | (_) \__ \ |_  |  __/ |_) | | (__  | (__| | | (__|   <  __/ |    | (_| | (_| | | | | | |  __/ |  __/\ V /  __/ |  |_|_|_|
+  \__|_| |_|\___| |_| |_| |_|\___/|___/\__|  \___| .__/|_|\___|  \___|_|_|\___|_|\_\___|_|     \__, |\__,_|_| |_| |_|\___|  \___| \_/ \___|_|  (_|_|_)
+                                                 | |                                            __/ |                                                 
+                                                 |_|                                           |___/                                                  
 
-//TODO: Add saving/loading somehow. cookies?
-//TODO: Better Item Shop Sorting. Search bar?
+  Created by stuartt_mcoded @ mcoded.xyz
+  Official site: https://realmcoded.github.io/the-most-epic-clicker-game-ever/
+  Source code: https://github.com/RealMCoded/the-most-epic-clicker-game-ever
+*/
 
+/*
+stu's todo list o' shit:
+
+- Add saving/loading somehow. cookies?
+- Better Item Shop Sorting. Search bar?
+- figure out how to load items from an external file.
+- clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
+- how tf would i do Chance - Double Or Nothing
+*/
+
+//Set Version
 const version = "0.1.3"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
 const chaching = new sound('buy.mp3')
 
+//Global events (date, other stuff later)
+const d = new Date();
+
+// Init other stuff
 var score=0
 var angle = 0
 var curskn=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
+
+//Item Listing
 var json = {
   "items":[
     {"name":"Click x2", "price":100, "description":"Gives you x2 your current click rate", "requireditem":null},
@@ -41,25 +67,18 @@ var json = {
     {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
   ]
 }
-
 var items = json.items
 var skins = json.skins
 
+//Print out store items
 console.log("STORE ITEMS")
 console.table(json.items)
 
 console.log("SKIN ITEMS")
 console.table(json.skins)
 
-//UNUSED
-//const itemList = ['Auto Clicker', 'Juice']
-//const itemPrice = ['12', '1738']
-//const items = JSON.parse("")
-
+//Start of Item Related Code
 function loadStore() {
-  /*fetch("items.json")
-  .then(responce => responce.json())
-  .then (data => {var json = JSON.parse(data)})*/ //TODO: get file loading working
 
   var news = document.getElementsByClassName("shop")[0]; //Easier to define this here than to call this long string every time
 
@@ -112,55 +131,6 @@ function loadStore() {
   }
 }
 
-//Item Loop (every 50 or so ms)
-var itemloop = setInterval(function() {
-  console.log("ItemLoopPing!!!")
-
-  if (itemsOwned.includes('11')) {
-    score+=100
-  } else if (itemsOwned.includes('10')) {
-    score+=10
-  } else if (itemsOwned.includes('9')) {
-    score+=1
-  } else if (itemsOwned.includes('8')) {
-    score+=0.1
-  } else if (itemsOwned.includes('7')) {
-    score+=0.01
-  }
-  document.getElementById("sco").innerHTML= `Score: ${Math.trunc(score)}`
-}, 50);
-
-function clickev() {
-  daman.addEventListener("mousedown", function() {
-    daman.src=`./skin/${curskn}/1.png`
-  });
-  daman.addEventListener("mouseup", function() {
-    daman.src=`./skin/${curskn}/0.png`
-  });
-  score = score +1
-  if (itemsOwned.includes('0')) {
-    score = score +1
-  }
-  if (itemsOwned.includes('1')) {
-    score = score +1
-  }
-  if (itemsOwned.includes('2')) {
-    score = score +1
-  }
-  if (itemsOwned.includes('3')) {
-    score = score +1
-  }
-  if (itemsOwned.includes('4')) {
-    score = score +1
-  }
-  if (itemsOwned.includes('5')) {
-    score = score +1
-  }
-  if (itemsOwned.includes('6')) {
-    score = score +1
-  }
-}
-
 function buyitem(itm) {
   let want = arguments[0] //easier to define it here than call arguments[0] every time lol
 
@@ -195,11 +165,27 @@ function buyitem(itm) {
   }
 }
 
-//Skins code
+//Item Loop (every 50 or so ms)
+var itemloop = setInterval(function() {
+  console.log("ItemLoopPing!!!")
+
+  if (itemsOwned.includes('11')) {
+    score+=100
+  } else if (itemsOwned.includes('10')) {
+    score+=10
+  } else if (itemsOwned.includes('9')) {
+    score+=1
+  } else if (itemsOwned.includes('8')) {
+    score+=0.1
+  } else if (itemsOwned.includes('7')) {
+    score+=0.01
+  }
+  document.getElementById("sco").innerHTML= `Score: ${Math.trunc(score)}`
+}, 50);
+//End of Item Related Code
+
+//Start of Skin Related Code
 function loadSkins() {
-  /*fetch("items.json")
-  .then(responce => responce.json())
-  .then (data => {var json = JSON.parse(data)})*/ //TODO: get file loading working
 
   var news = document.getElementsByClassName("skin")[0]; //Easier to define this here than to call this long string every time
 
@@ -213,7 +199,6 @@ function loadSkins() {
 
     let h5 = document.createElement("h2");
     h5.setAttribute("id",`skn_h5_${i}`);
-    //h5.innerHTML = items[i].name + " - " + items[i].price + " Points"; //yuck
     h5.innerHTML = `${skins[i].name} - ${skins[i].price} Points`;
     news.appendChild(h5);
 
@@ -258,16 +243,10 @@ function buyskin(skn) {
     if (skins[want].price <= score) {
       skinsOwned.push(want) //Add it to a list so the game knows you have it
       score = score - skins[want].price
-      //document.getElementById("sco").innerHTML= `Score: ${score}`
 
-      //Update store to make item out of stock
-      //document.getElementById(`img_${want}`).remove()
-      //document.getElementById(`h5_${want}`).remove()
-      //document.getElementById(`p_desc_${want}`).remove()
       let btn = document.getElementById(`skn_btn_${want}`)
       btn.innerHTML = "Equip";
       btn.setAttribute("onclick",`equipskin('${want}');`);
-      //document.getElementById(`hr_${want}`).remove()
       chaching.stop()
       chaching.play()
       equipskin(skn)
@@ -299,15 +278,42 @@ function equipskin(skn) {
     document.getElementById("dabase").style.color = "black";
   }
 }
+//End of Skin Related Code
 
-//Debug Funct.
-function debug(itm) {
-  switch (itm) {
-    case 0: //Print Items Owned
-      console.log(itemsOwned) 
-    break;
+//Click Event Code
+function clickev() {
+  daman.addEventListener("mousedown", function() {
+    daman.src=`./skin/${curskn}/1.png`
+  });
+  daman.addEventListener("mouseup", function() {
+    daman.src=`./skin/${curskn}/0.png`
+  });
+  score = score +1
+
+  if (itemsOwned.includes('0')) {
+    score = score +1
+  }
+  if (itemsOwned.includes('1')) {
+    score = score +1
+  }
+  if (itemsOwned.includes('2')) {
+    score = score +1
+  }
+  if (itemsOwned.includes('3')) {
+    score = score +1
+  }
+  if (itemsOwned.includes('4')) {
+    score = score +1
+  }
+  if (itemsOwned.includes('5')) {
+    score = score +1
+  }
+  if (itemsOwned.includes('6')) {
+    score = score +1
   }
 }
+
+//Other Scripts
 
 //https://stackoverflow.com/a/3646923
 function UrlExists(url)
