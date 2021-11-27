@@ -38,6 +38,8 @@ var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.
 var score=0
 var angle = 0
 var curskn=0
+var level = 0
+var levelprogres=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
@@ -59,7 +61,7 @@ var json = {
     {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
     {"name":"x2 your Current Score - One time use", "price":0, "description":"Double your current score by 2.<br>The catch is you can <b>only use it once</b>.", "requireditem":null},
     //{"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null},
-    //{"name":"Chance - Double Or Nothing", "price":NaN, "description":"50% Chance that you'll get double all your points you bet, 50% Chance you loose what you bet.", "requireditem":null} //I'll add this """"""""""later"""""""""""
+    //{"name":"Chance - Double Or Nothing", "price":0, "description":"50% Chance that you'll get double what you bet, 50% Chance you loose what you bet.", "requireditem":null},
   ],
   "skins":[
     {"name":"Default", "price":0, "description":"Default smile"},
@@ -291,9 +293,8 @@ function equipskin(skn) {
 }
 //End of Skin Related Code
 
-//Click Event Code
-function clickev() {
-  if (!isMobile) {
+//Add click anim if on desktop
+if (!isMobile) {
   daman.addEventListener("mousedown", function() {
     daman.src=`./skin/${curskn}/1.png`
   });
@@ -301,7 +302,11 @@ function clickev() {
     daman.src=`./skin/${curskn}/0.png`
   });
 }
+
+//Click Event Code
+function clickev() {
   score = score +1
+  levelprogres++
 
   if (itemsOwned.includes('0')) {
     score = score +1
@@ -354,7 +359,7 @@ function sound(src) {
   }
 }
 
-//Rotating man thing. some wise man named "StackOverflow" told me to put this at the bottom of the file.
+//Rotating man thing.
 var rotclock = setInterval(function() {
   if (angle > 359) {angle = 0}
   angle = angle + 1
