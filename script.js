@@ -21,10 +21,11 @@ stu's todo list o' shit:
 - figure out how to load items from an external file.
 - clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
+- UrlExists(): async xmlhttprequest request?
 */
 
 //Set Version
-const version = "0.1.4.dev"
+const version = "0.1.4"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -48,12 +49,12 @@ var skinsOwned = [null, '0']
 var json = {
   "items":[
     {"name":"Click x2", "price":100, "description":"Gives you x2 your current click rate", "requireditem":null},
-    {"name":"Click x3", "price":400, "description":"Gives you x3 your current click rate", "requireditem":'0'},
-    {"name":"Click x4", "price":550, "description":"Gives you x4 your current click rate", "requireditem":'1'},
+    {"name":"Click x3", "price":300, "description":"Gives you x3 your current click rate", "requireditem":'0'},
+    {"name":"Click x4", "price":500, "description":"Gives you x4 your current click rate", "requireditem":'1'},
     {"name":"Click x5", "price":700, "description":"Gives you x5 your current click rate", "requireditem":'2'},
     {"name":"Click x6", "price":900, "description":"Gives you x6 your current click rate", "requireditem":'3'},
-    {"name":"Click x7", "price":1000, "description":"Gives you x7 your current click rate", "requireditem":'4'},
-    {"name":"Click x8", "price":1100, "description":"Gives you x8 your current click rate", "requireditem":'5'},
+    {"name":"Click x7", "price":1100, "description":"Gives you x7 your current click rate", "requireditem":'4'},
+    {"name":"Click x8", "price":1300, "description":"Gives you x8 your current click rate", "requireditem":'5'},
     {"name":"Clicker Buddy - Weak", "price":250, "description":"Hire a buddy to help you click.", "requireditem":null},
     {"name":"Clicker Buddy - Below Average", "price":500, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Josh.", "requireditem":null},
     {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":null},

@@ -1,6 +1,7 @@
 Version 0.1.4
 - New Skin: Moden - 225 Points - Clean & Simplistic
-- Mobile clicker icon scaling (you can force it by calling 'debug("forceMobile")')
+- Mobile clicker icon scaling (you can force it by calling 'debug("forceMobile")' on pc)
+- changed prices for Click x3, Click x4, Click x7 and Click x8
 - Backend changes (mainly cleaning)
 
 Version 0.1.3
