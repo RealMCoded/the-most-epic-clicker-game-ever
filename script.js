@@ -22,6 +22,7 @@ stu's todo list o' shit:
 - clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
+- scaleToMobile(): Update image scale automatically
 */
 
 //Set Version
