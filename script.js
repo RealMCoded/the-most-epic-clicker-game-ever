@@ -17,6 +17,7 @@
 stu's todo list o' shit:
 
 - Add saving/loading somehow. cookies?
+- Level rewards
 - Better Item Shop Sorting. Search bar?
 - clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
@@ -40,6 +41,7 @@ var score=0
 var angle = 0
 var curskn=0
 var level = 0
+var nextlvl = 100
 var levelprogres=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
@@ -148,10 +150,9 @@ function buyitem(itm) {
   }
 }
 
-//Item Loop (every 50 or so ms)
+//Item Loop/update (every 50 or so ms)
 var itemloop = setInterval(function() {
-  console.log("ItemLoopPing!!!")
-
+  //console.log("ItemLoopPing!!!")
   if (itemsOwned.includes('11')) {
     score+=100
   } else if (itemsOwned.includes('10')) {
@@ -163,7 +164,20 @@ var itemloop = setInterval(function() {
   } else if (itemsOwned.includes('7')) {
     score+=0.01
   }
-  document.getElementById("sco").innerHTML= `Score: ${Math.trunc(score)}`
+
+  //check lvl. if it equal to nextlevel, progress on
+  if (levelprogres == nextlvl){
+    levelprogres = 0
+    nextlvl = nextlvl*2
+    level++
+  }
+
+  //Update HUD
+  document.getElementById("sco").innerHTML= `Points: ${Math.trunc(score)}`
+  document.getElementById("lvl").value = levelprogres
+  document.getElementById("lvl").max=nextlvl
+  document.getElementById("curlvl").innerHTML= `Level: ${level}`
+  document.getElementById("lvl_raw").innerHTML=`${levelprogres}/${nextlvl}`
 }, 50);
 //End of Item Related Code
 

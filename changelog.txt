@@ -1,5 +1,8 @@
 Version 0.1.5
 - New Skin: Idiot! - 325 Points -YOU ARE AN IDIOT! HAHAHAHAHAHAHAHAHAHAHAHAHA! (note: this skin flashes when clicked, may cause eye strain when clicked too fast.)
+- Shop now loads from a file (storeListings.json)
+- Added Levels! It doesn't do much right now but i have plans ;)
+- Renamed score to points
 
 Version 0.1.4
 - New Skin: Moden - 225 Points - Clean & Simplistic
