@@ -17,16 +17,15 @@
 stu's todo list o' shit:
 
 - Add saving/loading somehow. cookies?
+- Level rewards
 - Better Item Shop Sorting. Search bar?
-- figure out how to load items from an external file.
 - clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
-- scaleToMobile(): Update image scale automatically
 */
 
 //Set Version
-const version = "0.1.4"
+const version = "0.1.5"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -41,38 +40,15 @@ var score=0
 var angle = 0
 var curskn=0
 var level = 0
+var nextlvl = 100
 var levelprogres=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
 
-//Item Listing
-var json = {
-  "items":[
-    {"name":"Click x2", "price":100, "description":"Gives you x2 your current click rate", "requireditem":null},
-    {"name":"Click x3", "price":300, "description":"Gives you x3 your current click rate", "requireditem":'0'},
-    {"name":"Click x4", "price":500, "description":"Gives you x4 your current click rate", "requireditem":'1'},
-    {"name":"Click x5", "price":700, "description":"Gives you x5 your current click rate", "requireditem":'2'},
-    {"name":"Click x6", "price":900, "description":"Gives you x6 your current click rate", "requireditem":'3'},
-    {"name":"Click x7", "price":1100, "description":"Gives you x7 your current click rate", "requireditem":'4'},
-    {"name":"Click x8", "price":1300, "description":"Gives you x8 your current click rate", "requireditem":'5'},
-    {"name":"Clicker Buddy - Weak", "price":250, "description":"Hire a buddy to help you click.", "requireditem":null},
-    {"name":"Clicker Buddy - Below Average", "price":500, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Josh.", "requireditem":null},
-    {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":null},
-    {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":null},
-    {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
-    {"name":"x2 your Current Score - One time use", "price":0, "description":"Double your current score by 2.<br>The catch is you can <b>only use it once</b>.", "requireditem":null},
-    //{"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null},
-    //{"name":"Chance - Double Or Nothing", "price":0, "description":"50% Chance that you'll get double what you bet, 50% Chance you loose what you bet.", "requireditem":null},
-  ],
-  "skins":[
-    {"name":"Default", "price":0, "description":"Default smile"},
-    {"name":"ASCII Smile", "price":25, "description":":)"},
-    {"name":"Default but cooler", "price":125, "description":"b sides"},
-    {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
-    {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
-  ]
-}
+//Get items, parse them, then separeate them into their own variables.
+var json = httpGet("storeListings.json")
+var json = JSON.parse(json);
 var items = json.items
 var skins = json.skins
 
@@ -173,10 +149,9 @@ function buyitem(itm) {
   }
 }
 
-//Item Loop (every 50 or so ms)
+//Item Loop/update (every 50 or so ms)
 var itemloop = setInterval(function() {
-  console.log("ItemLoopPing!!!")
-
+  //console.log("ItemLoopPing!!!")
   if (itemsOwned.includes('11')) {
     score+=100
   } else if (itemsOwned.includes('10')) {
@@ -188,7 +163,20 @@ var itemloop = setInterval(function() {
   } else if (itemsOwned.includes('7')) {
     score+=0.01
   }
-  document.getElementById("sco").innerHTML= `Score: ${Math.trunc(score)}`
+
+  //check lvl. if it equal to nextlevel, progress on
+  if (levelprogres == nextlvl){
+    levelprogres = 0
+    nextlvl = nextlvl + 100
+    level++
+  }
+
+  //Update HUD
+  document.getElementById("sco").innerHTML= `Points: ${Math.trunc(score)}`
+  document.getElementById("lvl").value = levelprogres
+  document.getElementById("lvl").max=nextlvl
+  document.getElementById("curlvl").innerHTML= `Level: ${level}`
+  document.getElementById("lvl_raw").innerHTML=`${levelprogres}/${nextlvl}`
 }, 50);
 //End of Item Related Code
 
@@ -285,8 +273,8 @@ function equipskin(skn) {
   document.body.style.fontFamily = ""
 
   //Events
-  if (skn == 4) { //Seasonal
-    document.body.style.background = "#00137F url('./skin/4/bg.png')";
+  if (skn == 5) { //Seasonal
+    document.body.style.background = "#00137F url('./skin/5/bg.png')";
     document.getElementById("dabase").style.color = "white";
   } else if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
@@ -344,6 +332,15 @@ function UrlExists(url)
     return http.status!=404;
 }
 
+//httpGet
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
 //thx to https://www.w3schools.com/graphics/game_sound.asp 4 this code xoxo
 function sound(src) {
   this.sound = document.createElement("audio");
@@ -361,7 +358,7 @@ function sound(src) {
   }
 }
 
-//Rotating man thing.
+//Rotating man thing. Every 50ms
 var rotclock = setInterval(function() {
   if (angle > 359) {angle = 0}
   angle = angle + 1
@@ -371,16 +368,21 @@ var rotclock = setInterval(function() {
 //Scale things if mobile
 function scaleToMobile(){
   if (isMobile) {
-    if (curskn == 3){
+    /*if (curskn == 3){
       daman.style.height = `240px`
       daman.style.width = `240px`
     } else if (curskn == 4){
+      daman.style.height = `240px`
+      daman.style.width = `240px`
+    } else if (curskn == 5){
       daman.style.width = `236px`
       daman.style.height = `236px`
     } else {
       daman.style.height = `160px`
       daman.style.width = `236px`
-    }
+    }*/
+    daman.style.height = `15%`
+    daman.style.width = `15%`
   }
 }
 
@@ -391,5 +393,9 @@ function debug() {
   if (arg == "forceMobile"){
     isMobile = true
     scaleToMobile()
+  }
+  if (arg == "oldScale"){
+    daman.style.height = `160px`
+    daman.style.width = `236px`
   }
 }
