@@ -1,3 +1,6 @@
+Version 0.1.5
+- New Skin: Idiot! - 325 Points -YOU ARE AN IDIOT! HAHAHAHAHAHAHAHAHAHAHAHAHA! (note: this skin flashes when clicked, may cause eye strain when clicked too fast.)
+
 Version 0.1.4
 - New Skin: Moden - 225 Points - Clean & Simplistic
 - Mobile clicker icon scaling (you can force it by calling 'debug("forceMobile")' on pc)

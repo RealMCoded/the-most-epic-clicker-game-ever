@@ -18,7 +18,7 @@ stu's todo list o' shit:
 
 - Add saving/loading somehow. cookies?
 - Better Item Shop Sorting. Search bar?
-- figure out how to load items from an external file.
+- figure out how to load items from an external json file.
 - clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
@@ -26,7 +26,7 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.4"
+const version = "0.1.5.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -70,6 +70,7 @@ var json = {
     {"name":"ASCII Smile", "price":25, "description":":)"},
     {"name":"Default but cooler", "price":125, "description":"b sides"},
     {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
+    {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"},
     {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
   ]
 }
@@ -285,8 +286,8 @@ function equipskin(skn) {
   document.body.style.fontFamily = ""
 
   //Events
-  if (skn == 4) { //Seasonal
-    document.body.style.background = "#00137F url('./skin/4/bg.png')";
+  if (skn == 5) { //Seasonal
+    document.body.style.background = "#00137F url('./skin/5/bg.png')";
     document.getElementById("dabase").style.color = "white";
   } else if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
@@ -361,7 +362,7 @@ function sound(src) {
   }
 }
 
-//Rotating man thing.
+//Rotating man thing. Every 50ms
 var rotclock = setInterval(function() {
   if (angle > 359) {angle = 0}
   angle = angle + 1
@@ -375,6 +376,9 @@ function scaleToMobile(){
       daman.style.height = `240px`
       daman.style.width = `240px`
     } else if (curskn == 4){
+      daman.style.height = `240px`
+      daman.style.width = `240px`
+    } else if (curskn == 5){
       daman.style.width = `236px`
       daman.style.height = `236px`
     } else {
