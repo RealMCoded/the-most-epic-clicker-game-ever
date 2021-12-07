@@ -22,11 +22,10 @@ stu's todo list o' shit:
 - clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
-- scaleToMobile(): Update image scale automatically
 */
 
 //Set Version
-const version = "0.1.5.dev"
+const version = "0.1.5"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -369,7 +368,7 @@ var rotclock = setInterval(function() {
 //Scale things if mobile
 function scaleToMobile(){
   if (isMobile) {
-    if (curskn == 3){
+    /*if (curskn == 3){
       daman.style.height = `240px`
       daman.style.width = `240px`
     } else if (curskn == 4){
@@ -381,7 +380,9 @@ function scaleToMobile(){
     } else {
       daman.style.height = `160px`
       daman.style.width = `236px`
-    }
+    }*/
+    daman.style.height = `15%`
+    daman.style.width = `15%`
   }
 }
 
@@ -392,5 +393,9 @@ function debug() {
   if (arg == "forceMobile"){
     isMobile = true
     scaleToMobile()
+  }
+  if (arg == "oldScale"){
+    daman.style.height = `160px`
+    daman.style.width = `236px`
   }
 }

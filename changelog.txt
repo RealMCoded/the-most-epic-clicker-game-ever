@@ -3,6 +3,7 @@ Version 0.1.5
 - Shop now loads from a file (storeListings.json)
 - Added Levels! It doesn't do much right now but i have plans ;)
 - Renamed score to points
+- Backend changes (cleaned up some code for example)
 
 Version 0.1.4
 - New Skin: Moden - 225 Points - Clean & Simplistic
