@@ -168,7 +168,7 @@ var itemloop = setInterval(function() {
   //check lvl. if it equal to nextlevel, progress on
   if (levelprogres == nextlvl){
     levelprogres = 0
-    nextlvl = nextlvl*2
+    nextlvl = nextlvl + 100
     level++
   }
 
