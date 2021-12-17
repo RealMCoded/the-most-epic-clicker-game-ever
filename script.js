@@ -381,8 +381,8 @@ function scaleToMobile(){
       daman.style.height = `160px`
       daman.style.width = `236px`
     }*/
-    daman.style.height = `15%`
-    daman.style.width = `15%`
+    daman.style.height = `50%`
+    daman.style.width = `50%`
   }
 }
 
