@@ -19,13 +19,12 @@ stu's todo list o' shit:
 - Add saving/loading somehow. cookies?
 - Level rewards
 - Better Item Shop Sorting. Search bar?
-- clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
 */
 
 //Set Version
-const version = "0.1.5"
+const version = "0.1.6"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -40,6 +39,7 @@ var score=0
 var angle = 0
 var curskn=0
 var level = 0
+var clickerbuddyadd=0
 var nextlvl = 100
 var levelprogres=0
 var daman = document.getElementById('img')
@@ -135,7 +135,17 @@ function buyitem(itm) {
       chaching.play()
 
       //Buy Events
-      if (want == 12) {
+      if (want == 7) {
+        clickerbuddyadd=0.01
+      } else if (want == 8){
+        clickerbuddyadd=0.1
+      } else if (want == 9){
+        clickerbuddyadd=1
+      } else if (want == 10){
+        clickerbuddyadd=10
+      } else if (want == 11){
+        clickerbuddyadd=100
+      } else if (want == 12) {
         score = score*2
       }
     } else {
@@ -151,17 +161,33 @@ function buyitem(itm) {
 
 //Item Loop/update (every 50 or so ms)
 var itemloop = setInterval(function() {
-  //console.log("ItemLoopPing!!!")
-  if (itemsOwned.includes('11')) {
-    score+=100
-  } else if (itemsOwned.includes('10')) {
-    score+=10
-  } else if (itemsOwned.includes('9')) {
-    score+=1
-  } else if (itemsOwned.includes('8')) {
-    score+=0.1
-  } else if (itemsOwned.includes('7')) {
-    score+=0.01
+
+  //add clicker buddy bonus to score
+  score+=clickerbuddyadd
+
+  //auto clicker buddy multiplication
+  if (itemsOwned.includes('13')) {
+    if (itemsOwned.includes('0')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('1')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('2')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('3')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('4')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('5')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('6')) {
+      score = score + clickerbuddyadd
+    }
   }
 
   //check lvl. if it equal to nextlevel, progress on
@@ -177,6 +203,8 @@ var itemloop = setInterval(function() {
   document.getElementById("lvl").max=nextlvl
   document.getElementById("curlvl").innerHTML= `Level: ${level}`
   document.getElementById("lvl_raw").innerHTML=`${levelprogres}/${nextlvl}`
+  document.getElementById("chance_bettip").innerHTML=`Lowest bet is 1, highest bet is ${Math.trunc(score)}`
+  document.getElementById("dabet").max = Math.trunc(score)
 }, 50);
 //End of Item Related Code
 
@@ -321,6 +349,43 @@ function clickev() {
   }
 }
 
+//Coin Flip Game
+function chancegame(){
+  let bet = document.getElementById("dabet").value //Define how much the Player is betting
+  if (bet > score) {alert(`You bet ${bet},\nbut you don't have that much...`); return "ERR_INVALID_BET";} //If bet is somehow above, throw an error.
+
+  if (confirm(`Are you sure you want to bet ${bet}?`)) { //Double check to make sure they wanna do this
+
+  let side = confirm("Ok for heads, Cancel for tails.") //Define side as TRUE (1) for heads, and FALSE (0) for tails
+  document.getElementById("chance_smit").disabled = true //Disable the button
+  document.getElementById("coinimg").src = "./coin/flip.gif" //Change the coin to have the flip anim
+  document.getElementById("chance_status").innerHTML="Status: Flipping..." //Change the status
+
+  setTimeout(function(){ //Do this after 5 seconds
+    document.getElementById("chance_smit").disabled = false //Re-enable the button
+    document.getElementById("chance_status").innerHTML="Status: Idle..." //Reset the status
+
+    let winner = getRandomInt(2) //Decide if )0wins or if 1 wins
+
+    if (winner == 0){ //If tails wins...
+      document.getElementById("coinimg").src = "./coin/tail.png" //Set image to tails
+    } else {
+      document.getElementById("coinimg").src = "./coin/head.png" //Set image to Heads
+    }
+
+    if (winner == side){ //If the player chose the winning side
+      if (winner == 0) alert(`The coin landed on Tails.\nYou win ${bet*2} points!`); //Show this if 0 was chosen
+      if (winner == 1) alert(`The coin landed on Heads.\nYou win ${bet*2} points!`); //Show this if 1 was chosen
+      score = score + (bet*2)
+    } else {
+      if (winner == 0) alert(`The coin landed on Tails.\nYou lost ${bet} points!`); //Show this if 0 was chosen
+      if (winner == 1) alert(`The coin landed on Heads.\nYou lost ${bet} points!`); //Show this if 1 was chosen
+      score-=bet
+    }
+  },5000);
+}
+}
+
 //Other Scripts
 
 //https://stackoverflow.com/a/3646923
@@ -384,6 +449,11 @@ function scaleToMobile(){
     daman.style.height = `50%`
     daman.style.width = `50%`
   }
+}
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
 //DEBUG STUFF
