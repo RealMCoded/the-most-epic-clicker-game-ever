@@ -19,13 +19,12 @@ stu's todo list o' shit:
 - Add saving/loading somehow. cookies?
 - Level rewards
 - Better Item Shop Sorting. Search bar?
-- clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication. UPDATE: even though it works it can be WAYYYY BETTER. Maybe set a variable?
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
 */
 
 //Set Version
-const version = "0.1.6.dev"
+const version = "0.1.6"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -350,6 +349,43 @@ function clickev() {
   }
 }
 
+//Coin Flip Game
+function chancegame(){
+  let bet = document.getElementById("dabet").value //Define how much the Player is betting
+  if (bet > score) {alert(`You bet ${bet},\nbut you don't have that much...`); return "ERR_INVALID_BET";} //If bet is somehow above, throw an error.
+
+  if (confirm(`Are you sure you want to bet ${bet}?`)) { //Double check to make sure they wanna do this
+
+  let side = confirm("Ok for heads, Cancel for tails.") //Define side as TRUE (1) for heads, and FALSE (0) for tails
+  document.getElementById("chance_smit").disabled = true //Disable the button
+  document.getElementById("coinimg").src = "./coin/flip.gif" //Change the coin to have the flip anim
+  document.getElementById("chance_status").innerHTML="Status: Flipping..." //Change the status
+
+  setTimeout(function(){ //Do this after 5 seconds
+    document.getElementById("chance_smit").disabled = false //Re-enable the button
+    document.getElementById("chance_status").innerHTML="Status: Idle..." //Reset the status
+
+    let winner = getRandomInt(2) //Decide if )0wins or if 1 wins
+
+    if (winner == 0){ //If tails wins...
+      document.getElementById("coinimg").src = "./coin/tail.png" //Set image to tails
+    } else {
+      document.getElementById("coinimg").src = "./coin/head.png" //Set image to Heads
+    }
+
+    if (winner == side){ //If the player chose the winning side
+      if (winner == 0) alert(`The coin landed on Tails.\nYou win ${bet*2} points!`); //Show this if 0 was chosen
+      if (winner == 1) alert(`The coin landed on Heads.\nYou win ${bet*2} points!`); //Show this if 1 was chosen
+      score = score + (bet*2)
+    } else {
+      if (winner == 0) alert(`The coin landed on Tails.\nYou lost ${bet} points!`); //Show this if 0 was chosen
+      if (winner == 1) alert(`The coin landed on Heads.\nYou lost ${bet} points!`); //Show this if 1 was chosen
+      score-=bet
+    }
+  },5000);
+}
+}
+
 //Other Scripts
 
 //https://stackoverflow.com/a/3646923
@@ -432,41 +468,4 @@ function debug() {
     daman.style.height = `160px`
     daman.style.width = `236px`
   }
-}
-
-//CHANCE GAME
-function chancegame(){
-  let bet = document.getElementById("dabet").value
-  if (bet > score) {alert(`You bet ${bet},\nbut you don't have that much...`); return "ERR_INVALID_BET";}
-
-  if (confirm(`Are you sure you want to bet ${bet}?`)) {
-
-  let side = confirm("Ok for heads, Cancel for tails.")
-  document.getElementById("chance_smit").disabled = true
-  document.getElementById("coinimg").src = "./coin/flip.gif"
-  document.getElementById("chance_status").innerHTML="Status: Flipping..."
-
-  setTimeout(function(){
-    document.getElementById("chance_smit").disabled = false
-    document.getElementById("chance_status").innerHTML="Status: Idle..."
-
-    let winner = getRandomInt(2)
-
-    if (winner == 0){ //tails
-      document.getElementById("coinimg").src = "./coin/tail.png"
-    } else {
-      document.getElementById("coinimg").src = "./coin/head.png"
-    }
-
-    if (winner == side){
-      if (winner == 0) alert(`The coin landed on Tails.\nYou win ${bet*2} points!`);
-      if (winner == 1) alert(`The coin landed on Heads.\nYou win ${bet*2} points!`);
-      score = score + (bet*2)
-    } else {
-      if (winner == 0) alert(`The coin landed on Tails.\nYou lost ${bet} points!`);
-      if (winner == 1) alert(`The coin landed on Heads.\nYou lost ${bet} points!`);
-      score-=bet
-    }
-  },5000);
-}
 }
