@@ -25,7 +25,7 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.5"
+const version = "0.1.6.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -177,6 +177,8 @@ var itemloop = setInterval(function() {
   document.getElementById("lvl").max=nextlvl
   document.getElementById("curlvl").innerHTML= `Level: ${level}`
   document.getElementById("lvl_raw").innerHTML=`${levelprogres}/${nextlvl}`
+  document.getElementById("chance_bettip").innerHTML=`Lowest bet is 1, highest bet is ${score}`
+  document.getElementById("dabet").max = score
 }, 50);
 //End of Item Related Code
 
@@ -386,6 +388,11 @@ function scaleToMobile(){
   }
 }
 
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 //DEBUG STUFF
 function debug() {
   let arg = arguments[0]
@@ -398,4 +405,38 @@ function debug() {
     daman.style.height = `160px`
     daman.style.width = `236px`
   }
+}
+
+//CHANCE GAME
+function chancegame(){
+  let bet = document.getElementById("dabet").value
+  if (bet > score) {alert(`You bet ${bet},\nbut you don't have that much...`); return "ERR_INVALID_BET";}
+
+  let side = confirm("Ok for heads, Cancel for tails.")
+  document.getElementById("chance_smit").disabled = true
+  document.getElementById("coinimg").src = "./coin/flip.gif"
+  document.getElementById("chance_status").innerHTML="Status: Flipping..."
+
+  setTimeout(function(){
+    document.getElementById("chance_smit").disabled = false
+    document.getElementById("chance_status").innerHTML="Status: Idle..."
+
+    let winner = getRandomInt(2)
+
+    if (winner == 0){ //tails
+      document.getElementById("coinimg").src = "./coin/tail.png"
+    } else {
+      document.getElementById("coinimg").src = "./coin/head.png"
+    }
+
+    if (winner == side){
+      if (winner == 0) alert(`The coin landed on Tails.\nYou win ${score*2} points!`);
+      if (winner == 1) alert(`The coin landed on Heads.\nYou win ${score*2} points!`);
+      score = score*2
+    } else {
+      if (winner == 0) alert(`The coin landed on Tails.\nYou lost ${score} points!`);
+      if (winner == 1) alert(`The coin landed on Heads.\nYou lost ${score} points!`);
+      score-=bet
+    }
+  },5000);
 }
