@@ -204,8 +204,8 @@ var itemloop = setInterval(function() {
   document.getElementById("lvl").max=nextlvl
   document.getElementById("curlvl").innerHTML= `Level: ${level}`
   document.getElementById("lvl_raw").innerHTML=`${levelprogres}/${nextlvl}`
-  document.getElementById("chance_bettip").innerHTML=`Lowest bet is 1, highest bet is ${score}`
-  document.getElementById("dabet").max = score
+  document.getElementById("chance_bettip").innerHTML=`Lowest bet is 1, highest bet is ${Math.trunc(score)}`
+  document.getElementById("dabet").max = Math.trunc(score)
 }, 50);
 //End of Item Related Code
 
@@ -439,6 +439,8 @@ function chancegame(){
   let bet = document.getElementById("dabet").value
   if (bet > score) {alert(`You bet ${bet},\nbut you don't have that much...`); return "ERR_INVALID_BET";}
 
+  if (confirm(`Are you sure you want to bet ${bet}?`)) {
+
   let side = confirm("Ok for heads, Cancel for tails.")
   document.getElementById("chance_smit").disabled = true
   document.getElementById("coinimg").src = "./coin/flip.gif"
@@ -466,4 +468,5 @@ function chancegame(){
       score-=bet
     }
   },5000);
+}
 }
