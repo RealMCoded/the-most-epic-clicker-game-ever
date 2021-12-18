@@ -12,7 +12,8 @@
       {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":null},
       {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":null},
       {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
-      {"name":"x2 your Current Score - One time use", "price":0, "description":"Double your current score by 2.<br>The catch is you can <b>only use it once</b>.", "requireditem":null}
+      {"name":"x2 your Current Score - One time use", "price":0, "description":"Double your current score by 2.<br>The catch is you can <b>only use it once</b>.", "requireditem":null},
+      {"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null}
     ],
     "skins":[
       {"name":"Default", "price":0, "description":"Default smile"},
@@ -23,7 +24,6 @@
       {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"}
     ],
     "_OLD":[
-        {"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null},
         {"name":"Chance - Double Or Nothing", "price":0, "description":"50% Chance that you'll get double what you bet, 50% Chance you loose what you bet.", "requireditem":null}
     ]
 }

@@ -19,7 +19,7 @@ stu's todo list o' shit:
 - Add saving/loading somehow. cookies?
 - Level rewards
 - Better Item Shop Sorting. Search bar?
-- clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication
+- clickev(): Re-do how auto clicker is done for Clicker Buddy Multiplication. UPDATE: even though it works it can be WAYYYY BETTER. Maybe set a variable?
 - how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
 */
@@ -40,6 +40,7 @@ var score=0
 var angle = 0
 var curskn=0
 var level = 0
+var clickerbuddyadd=0
 var nextlvl = 100
 var levelprogres=0
 var daman = document.getElementById('img')
@@ -135,7 +136,17 @@ function buyitem(itm) {
       chaching.play()
 
       //Buy Events
-      if (want == 12) {
+      if (want == 7) {
+        clickerbuddyadd=0.01
+      } else if (want == 8){
+        clickerbuddyadd=0.1
+      } else if (want == 9){
+        clickerbuddyadd=1
+      } else if (want == 10){
+        clickerbuddyadd=10
+      } else if (want == 11){
+        clickerbuddyadd=100
+      } else if (want == 12) {
         score = score*2
       }
     } else {
@@ -151,17 +162,33 @@ function buyitem(itm) {
 
 //Item Loop/update (every 50 or so ms)
 var itemloop = setInterval(function() {
-  //console.log("ItemLoopPing!!!")
-  if (itemsOwned.includes('11')) {
-    score+=100
-  } else if (itemsOwned.includes('10')) {
-    score+=10
-  } else if (itemsOwned.includes('9')) {
-    score+=1
-  } else if (itemsOwned.includes('8')) {
-    score+=0.1
-  } else if (itemsOwned.includes('7')) {
-    score+=0.01
+
+  //add clicker buddy bonus to score
+  score+=clickerbuddyadd
+
+  //auto clicker buddy multiplication
+  if (itemsOwned.includes('13')) {
+    if (itemsOwned.includes('0')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('1')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('2')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('3')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('4')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('5')) {
+      score = score + clickerbuddyadd
+    }
+    if (itemsOwned.includes('6')) {
+      score = score + clickerbuddyadd
+    }
   }
 
   //check lvl. if it equal to nextlevel, progress on
