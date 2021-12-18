@@ -430,12 +430,12 @@ function chancegame(){
     }
 
     if (winner == side){
-      if (winner == 0) alert(`The coin landed on Tails.\nYou win ${score*2} points!`);
-      if (winner == 1) alert(`The coin landed on Heads.\nYou win ${score*2} points!`);
-      score = score*2
+      if (winner == 0) alert(`The coin landed on Tails.\nYou win ${bet*2} points!`);
+      if (winner == 1) alert(`The coin landed on Heads.\nYou win ${bet*2} points!`);
+      score = score + (bet*2)
     } else {
-      if (winner == 0) alert(`The coin landed on Tails.\nYou lost ${score} points!`);
-      if (winner == 1) alert(`The coin landed on Heads.\nYou lost ${score} points!`);
+      if (winner == 0) alert(`The coin landed on Tails.\nYou lost ${bet} points!`);
+      if (winner == 1) alert(`The coin landed on Heads.\nYou lost ${bet} points!`);
       score-=bet
     }
   },5000);
