@@ -353,7 +353,7 @@ function clickev() {
 function chancegame(){
   let bet = document.getElementById("dabet").value //Define how much the Player is betting
   if (bet > score) {alert(`You bet ${bet},\nbut you don't have that much...`); return "ERR_INVALID_BET";} //If bet is somehow above, throw an error.
-
+  if (0 > bet) {alert(`You bet ${bet},\nbut you cannot bet negative points.`); return "ERR_INVALID_BET";}
   if (confirm(`Are you sure you want to bet ${bet}?`)) { //Double check to make sure they wanna do this
 
   let side = confirm("Ok for heads, Cancel for tails.") //Define side as TRUE (1) for heads, and FALSE (0) for tails
