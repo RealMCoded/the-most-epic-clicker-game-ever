@@ -1,3 +1,6 @@
+Version 0.1.6b
+- Removed Christmas Skin.
+
 Version 0.1.6
 - Coin flip game. Bet a few points of your choosing to double them or lose them!
 - New item: Clicker Buddy Multiplication - 1500 Points - Clicker Buddies can use your Click Multiplier!

@@ -24,7 +24,7 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.6"
+const version = "0.1.6b"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //Init "some" SFX
@@ -301,12 +301,14 @@ function equipskin(skn) {
   document.body.style.fontFamily = ""
 
   //Events
-  if (skn == 5) { //Seasonal
-    document.body.style.background = "#00137F url('./skin/5/bg.png')";
-    document.getElementById("dabase").style.color = "white";
-  } else if (skn == 3) { //Modern
+  if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
   }
+
+  /*if (skn == 5) { //Seasonal
+    document.body.style.background = "#00137F url('./skin/5/bg.png')";
+    document.getElementById("dabase").style.color = "white";
+  }*/
   scaleToMobile()
 }
 //End of Skin Related Code
@@ -347,6 +349,13 @@ function clickev() {
   if (itemsOwned.includes('6')) {
     score = score +1
   }
+
+  //Skin events
+  /*if (true){ //parce true for now to test
+      if (getRandomInt(10) == 1){ // 1/100 chance
+        aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes'); //create popup
+      }
+  }*/
 }
 
 //Coin Flip Game
@@ -467,5 +476,8 @@ function debug() {
   if (arg == "oldScale"){
     daman.style.height = `160px`
     daman.style.width = `236px`
+  }
+  if (arg == "idiot"){
+      aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes');
   }
 }

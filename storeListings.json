@@ -20,10 +20,10 @@
       {"name":"ASCII Smile", "price":25, "description":":)"},
       {"name":"Default but cooler", "price":125, "description":"b sides"},
       {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
-      {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"},
-      {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"}
+      {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"}
     ],
     "_OLD":[
+        {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
         {"name":"Chance - Double Or Nothing", "price":0, "description":"50% Chance that you'll get double what you bet, 50% Chance you loose what you bet.", "requireditem":null}
     ]
 }
