@@ -24,8 +24,11 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.6b"
+const version = "0.1.7.dev"
 document.getElementById("ver").innerHTML= `Version ${version}`
+
+//print sum shit
+console.log(`THE MOST EPIC CLICKER GAME EVER!!!\n\nVersion ${version}\n\nCreated by stuartt_mcoded @ mcoded.xyz\n\nOfficial site: https://realmcoded.github.io/the-most-epic-clicker-game-ever/ \n\nSource code: https://github.com/RealMCoded/the-most-epic-clicker-game-ever`)
 
 //Init "some" SFX
 const chaching = new sound('buy.mp3')
@@ -47,17 +50,21 @@ var itemsOwned = [null]
 var skinsOwned = [null, '0']
 
 //Get items, parse them, then separeate them into their own variables.
-var json = httpGet("storeListings.json")
+var json = httpGet("data.json")
 var json = JSON.parse(json);
 var items = json.items
 var skins = json.skins
+var ach = json.achievements
 
-//Print out store items
+//Print out json categories
 console.log("STORE ITEMS")
-console.table(json.items)
+console.table(items)
 
 console.log("SKIN ITEMS")
-console.table(json.skins)
+console.table(skins)
+
+console.log("ACHIEVEMENTS")
+console.table(ach)
 
 scaleToMobile()
 
@@ -313,6 +320,46 @@ function equipskin(skn) {
 }
 //End of Skin Related Code
 
+//Achievement Code stuffits
+
+function loadAch() {
+
+  var news = document.getElementsByClassName("ach")[0]; //Easier to define this here than to call this long string every time
+
+  //Repeat until i is equal to the json's size.
+  for(var i = 0; i < ach.length; i++) {
+
+    let img = document.createElement("img")
+    if (UrlExists(`./ach/${i}/not-grant.png`)) {img.setAttribute("src",`./ach/${i}/not-grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
+    img.setAttribute("id",`ach_img_${i}`);
+    news.appendChild(img)
+
+    let h5 = document.createElement("h2");
+    h5.setAttribute("id",`ach_h5_${i}`);
+    h5.innerHTML = `${ach[i].name} (Rarity: ${translateAchRarity(ach[i].rarity)})`;
+    news.appendChild(h5);
+
+    let p = document.createElement("p");
+    p.setAttribute("id",`ach_p_desc_${i}`);
+    p.innerHTML = ach[i].description;
+    news.appendChild(p);
+
+    let br = document.createElement("hr")
+    br.setAttribute("id",`ach_hr_${i}`);
+    news.appendChild(br)
+
+    console.log(`Loaded achievement ${i}`)
+  }
+  console.log("Loaded achievements.")
+
+  //After loading, Remove the placeholder text
+  try {
+    document.getElementById("achload").remove()
+  } catch { //If failed, put an error
+    console.log("Element \"achload\" was already removed!")
+  }
+}
+
 //Add click anim if on desktop
 if (!isMobile) {
   daman.addEventListener("mousedown", function() {
@@ -465,6 +512,16 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+function translateAchRarity(rarID){
+  if (rarID == 0) {
+    return "<font color=\"#c2bab7\">Common</font>"
+  } else if (rarID == 1) {
+    return "<font color=\"#c2bab7\">Uncommon</font>"
+  } else {
+    return "<font color=\"#F52A00\">U N D E F I N E D</font>"
+  }
+}
+
 //DEBUG STUFF
 function debug() {
   let arg = arguments[0]
@@ -479,5 +536,6 @@ function debug() {
   }
   if (arg == "idiot"){
       aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes');
+      return "return idiot payload lolol";
   }
 }
