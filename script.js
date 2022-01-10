@@ -19,7 +19,6 @@ stu's todo list o' shit:
 - Add saving/loading somehow. cookies?
 - Level rewards
 - Better Item Shop Sorting. Search bar?
-- how tf would i do Chance - Double Or Nothing
 - UrlExists(): async xmlhttprequest request?
 */
 
@@ -32,6 +31,7 @@ console.log(`THE MOST EPIC CLICKER GAME EVER!!!\n\nVersion ${version}\n\nCreated
 
 //Init "some" SFX
 const chaching = new sound('buy.mp3')
+const achget = new sound('ach.mp3')
 
 //Global events (date, other stuff later)
 const d = new Date(); //d for date
@@ -45,6 +45,7 @@ var level = 0
 var clickerbuddyadd=0
 var nextlvl = 100
 var levelprogres=0
+var totalclicks_thisSession=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
@@ -55,6 +56,7 @@ var json = JSON.parse(json);
 var items = json.items
 var skins = json.skins
 var ach = json.achievements
+var lvlrewards = json.lvlrewards
 
 //Print out json categories
 console.log("STORE ITEMS")
@@ -199,6 +201,7 @@ var itemloop = setInterval(function() {
 
   //check lvl. if it equal to nextlevel, progress on
   if (levelprogres == nextlvl){
+    grantLvlReward()
     levelprogres = 0
     nextlvl = nextlvl + 100
     level++
@@ -360,6 +363,12 @@ function loadAch() {
   }
 }
 
+function grantAch(achID){
+
+}
+
+//end of ach code lolo
+
 //Add click anim if on desktop
 if (!isMobile) {
   daman.addEventListener("mousedown", function() {
@@ -374,6 +383,7 @@ if (!isMobile) {
 function clickev() {
   score = score +1
   levelprogres++
+  totalclicks_thisSession++
 
   if (itemsOwned.includes('0')) {
     score = score +1
@@ -443,6 +453,23 @@ function chancegame(){
 }
 
 //Other Scripts
+
+//Grant level reward script
+function grantLvlReward(){
+  if (level > lvlrewards.length) {
+    console.log("PLAYER HAS EXCEEDED CAP!")
+  } else {
+    if (lvlrewards[level].rewardType == 0){ //If it's points
+      score += lvlrewards[level].amount
+    } else if (lvlrewards[level].rewardType == 1) {
+      skinsOwned.push(lvlrewards[level].amount) //Add it to a list so the game knows you have it
+      let btn = document.getElementById(`skn_btn_${lvlrewards[level].amount}`)
+      btn.innerHTML = "Equip";
+      btn.setAttribute("onclick",`equipskin('${lvlrewards[level].amount}');`);
+      equipskin(skn)
+    }
+  }
+}
 
 //https://stackoverflow.com/a/3646923
 function UrlExists(url)
@@ -518,7 +545,7 @@ function translateAchRarity(rarID){
   } else if (rarID == 1) {
     return "<font color=\"#c2bab7\">Uncommon</font>"
   } else {
-    return "<font color=\"#F52A00\">U N D E F I N E D</font>"
+    return "<font color=\"#F52A00\">!!ERROR - INVALID RARITY!!</font>"
   }
 }
 

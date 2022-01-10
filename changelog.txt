@@ -1,3 +1,7 @@
+Version 0.1.7 **BETA VERSION - FEATURES ARE NOT DONE YET**
+- Achievements
+- Level rewards
+
 Version 0.1.6b
 - Removed Christmas Skin.
 

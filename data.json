@@ -23,11 +23,15 @@
       {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"}
     ],
     "achievements":[
-      {"name":"TestAch", "description":"THIS IS A TEST ACHEIVEMENT", "rarity": 0},
-      {"name":"Another Test", "description":"THIS IS ANOTHER TEST ACHIEVEMENT", "rarity": 2}
+      {"name":"TestAch", "description":"THIS IS A TEST ACHEIVEMENT", "rarity": 0, "reward": null},
+      {"name":"Another Test", "description":"THIS IS ANOTHER TEST ACHIEVEMENT", "rarity": 2, "reward": null}
+    ],
+    "lvlrewards":[
+      {"rewardType": 0, "amount": 34},
+      {"rewardType": 0, "amount": 30000},
+      {"rewardType": 1, "amount": 2}
     ],
     "_OLD":[
-        {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"},
-        {"name":"Chance - Double Or Nothing", "price":0, "description":"50% Chance that you'll get double what you bet, 50% Chance you loose what you bet.", "requireditem":null}
+        {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"}
     ]
 }
