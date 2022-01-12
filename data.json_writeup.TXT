@@ -1,0 +1,8 @@
+just a quick writeup on how somethings work in data.json
+
+for lvl rewards, "rewardType" defines what reward you get. 
+0 means points, 1 means skin.
+
+amount changes depending on the choice.
+With 0 (Points), amount defined how many points you get.
+With 1 (Skin), amount defines what skin you get via the id system (0 = default, 1 = ascii, etc.)

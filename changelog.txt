@@ -1,6 +1,7 @@
 Version 0.1.7 **BETA VERSION - FEATURES ARE NOT DONE YET**
 - Achievements
 - Level rewards
+- Replaced ASCII skin with Default but sad
 
 Version 0.1.6b
 - Removed Christmas Skin.

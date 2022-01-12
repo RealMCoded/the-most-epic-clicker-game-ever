@@ -17,18 +17,21 @@
     ],
     "skins":[
       {"name":"Default", "price":0, "description":"Default smile"},
-      {"name":"ASCII Smile", "price":25, "description":":)"},
+      {"name":"Default but sad", "price":25, "description":"why sad?"},
       {"name":"Default but cooler", "price":125, "description":"b sides"},
       {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
       {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"}
     ],
     "achievements":[
-      {"name":"TestAch", "description":"THIS IS A TEST ACHEIVEMENT", "rarity": 0, "reward": null},
-      {"name":"Another Test", "description":"THIS IS ANOTHER TEST ACHIEVEMENT", "rarity": 2, "reward": null}
+      {"name":"Test", "description":"Test Test Test!", "rarity": 0, "reward": null},
+      {"name":"Test", "description":"Test Test Test!", "rarity": 1, "reward": null},
+      {"name":"Test", "description":"Test Test Test!", "rarity": 2, "reward": null},
+      {"name":"Test", "description":"Test Test Test!", "rarity": 3, "reward": null},
+      {"name":"Test", "description":"Test Test Test!", "rarity": 4, "reward": null},
+      {"name":"Test", "description":"Test Test Test!", "rarity": 5, "reward": null}
     ],
     "lvlrewards":[
       {"rewardType": 0, "amount": 34},
-      {"rewardType": 0, "amount": 30000},
       {"rewardType": 1, "amount": 2}
     ],
     "_OLD":[
