@@ -17,7 +17,6 @@
 stu's todo list o' shit:
 
 - Add saving/loading somehow. cookies?
-- Level rewards
 - Better Item Shop Sorting. Search bar?
 - UrlExists(): async xmlhttprequest request?
 */
@@ -69,6 +68,8 @@ console.log("ACHIEVEMENTS")
 console.table(ach)
 
 scaleToMobile()
+
+setRewardItem()
 
 //Start of Item Related Code
 function loadStore() {
@@ -200,11 +201,12 @@ var itemloop = setInterval(function() {
   }
 
   //check lvl. if it equal to nextlevel, progress on
-  if (levelprogres == nextlvl){
+  if (levelprogres >= nextlvl){
     grantLvlReward()
     levelprogres = 0
     nextlvl = nextlvl + 100
     level++
+    setRewardItem()
   }
 
   //Update HUD
@@ -319,7 +321,7 @@ function equipskin(skn) {
     document.body.style.background = "#00137F url('./skin/5/bg.png')";
     document.getElementById("dabase").style.color = "white";
   }*/
-  scaleToMobile()
+  //scaleToMobile()
 }
 //End of Skin Related Code
 
@@ -456,7 +458,7 @@ function chancegame(){
 
 //Grant level reward script
 function grantLvlReward(){
-  if (level > lvlrewards.length) {
+  if (level >= lvlrewards.length) {
     console.log("PLAYER HAS EXCEEDED CAP!")
   } else {
     if (lvlrewards[level].rewardType == 0){ //If it's points
@@ -466,7 +468,19 @@ function grantLvlReward(){
       let btn = document.getElementById(`skn_btn_${lvlrewards[level].amount}`)
       btn.innerHTML = "Equip";
       btn.setAttribute("onclick",`equipskin('${lvlrewards[level].amount}');`);
-      equipskin(skn)
+      equipskin(lvlrewards[level].amount)
+    }
+  }
+}
+
+function setRewardItem(){
+  if (level >= lvlrewards.length) {
+    document.getElementById("lvl_reward").innerHTML = `Reward: <font color=#ff0000>No more rewards available</font>`
+  } else {
+    if (lvlrewards[level].rewardType == 0){ //If it's points
+      document.getElementById("lvl_reward").innerHTML = `Reward: ${lvlrewards[level].amount} Points`
+    } else if (lvlrewards[level].rewardType == 1) {
+      document.getElementById("lvl_reward").innerHTML = `Reward: ${skins[lvlrewards[level].amount].name} Skin`
     }
   }
 }
@@ -543,7 +557,13 @@ function translateAchRarity(rarID){
   if (rarID == 0) {
     return "<font color=\"#c2bab7\">Common</font>"
   } else if (rarID == 1) {
-    return "<font color=\"#c2bab7\">Uncommon</font>"
+    return "<font color=\"#c7c781\">Uncommon</font>"
+  } else if (rarID == 2) {
+    return "<font color=\"#c9b340\">Rare</font>"
+  } else if (rarID == 3) {
+    return "<font color=\"#ba9d0d\">Ultra-Rare</font>"
+  } else if (rarID == 4) {
+    return "<font color=\"#021057\">G O D L I K E</font>"
   } else {
     return "<font color=\"#F52A00\">!!ERROR - INVALID RARITY!!</font>"
   }
@@ -566,3 +586,5 @@ function debug() {
       return "return idiot payload lolol";
   }
 }
+
+document.getElementById("whoops").remove()
