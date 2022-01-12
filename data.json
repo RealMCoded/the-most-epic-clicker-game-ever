@@ -20,7 +20,8 @@
       {"name":"Default but sad", "price":25, "description":"why sad?"},
       {"name":"Default but cooler", "price":125, "description":"b sides"},
       {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
-      {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"}
+      {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"},
+      {"name":"Windows 95", "price":0, "description":"<font color=#008282><a onClick=egg()>Are you ready to start?</a></font>"}
     ],
     "achievements":[
       {"name":"Test", "description":"Test Test Test!", "rarity": 0, "reward": null},

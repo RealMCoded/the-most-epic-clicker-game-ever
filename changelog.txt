@@ -2,6 +2,7 @@ Version 0.1.7 **BETA VERSION - FEATURES ARE NOT DONE YET**
 - Achievements
 - Level rewards
 - Replaced ASCII skin with Default but sad
+- New skin: Windows 95 - 425 Points - Are you ready to start?
 
 Version 0.1.6b
 - Removed Christmas Skin.
@@ -12,7 +13,7 @@ Version 0.1.6
 - Backend changes 
 
 Version 0.1.5
-- New Skin: Idiot! - 325 Points -YOU ARE AN IDIOT! HAHAHAHAHAHAHAHAHAHAHAHAHA! (note: this skin flashes when clicked, may cause eye strain when clicked too fast.)
+- New Skin: Idiot! - 325 Points - YOU ARE AN IDIOT! HAHAHAHAHAHAHAHAHAHAHAHAHA! (note: this skin flashes when clicked, may cause eye strain when clicked too fast.)
 - Shop now loads from a file (storeListings.json)
 - Added Levels! It doesn't do much right now but i have plans ;)
 - Renamed score to points

@@ -310,11 +310,15 @@ function equipskin(skn) {
   //Reset to normal
   document.body.style.background = "#FFFFFF";
   document.getElementById("dabase").style.color = "black";
+  //document.getElementById("datune").src = "loop.mp3"
+  //document.getElementById("mus").load()
   document.body.style.fontFamily = ""
 
   //Events
   if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
+  } else if (skn == 5){
+    document.body.style.background = "#00137F url('./skin/5/bg.png')";
   }
 
   /*if (skn == 5) { //Seasonal
@@ -584,6 +588,13 @@ function debug() {
   if (arg == "idiot"){
       aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes');
       return "return idiot payload lolol";
+  }
+}
+
+function egg(){
+  if (curskn == 5) {
+  document.getElementById("datune").src = "./skin/5/loop.mp3"
+  document.getElementById("mus").load()
   }
 }
 
