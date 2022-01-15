@@ -20,11 +20,12 @@
     <title>the most epic clicker game ever!!!</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body id="dabase" onload="loadStore(); loadSkins()">
+  <body id="dabase" onload="loadStore(); loadSkins(); loadAch()">
   <center>
-  <audio id="mus" controls loop autoplay>
-    <source src="loop.mp3" type="audio/mpeg">
-    what the FUCK?!?!?!? Your browser DOESN'T SUPPORT AUDIO!?!??!??!
+    <p id="whoops">If you are seeing this it's probably because the game is loading or an error has occured.</p>
+  <audio id="mus" controls loop>
+    <source id="datune" src="loop.mp3" type="audio/mpeg">
+    Your browser DOESN'T SUPPORT AUDIO!?!??!??!
   </audio>
     <br>
     <br>
@@ -47,6 +48,7 @@
   <p id="curlvl">Level: 0</p>
   <progress id="lvl" max="100" value="0"></progress>
   <p id="lvl_raw">0/100</p>
+  <p id="lvl_reward">Reward: [PLACEHOLDER]</p>
   <!--<button onClick="alert('To be added later!')">Reset Level</button>-->
   <br>
   <!--<nav>
@@ -73,6 +75,16 @@
   </nav>-->
   <br>
   <br>
+  <div class="ach">
+    <h1>Achievements</h1>
+    <h3>flex that you clicked 10 billion trillion times</h3>
+    <hr>
+    <h1 id="achload">Loading Achievements</h1>
+  </div>
+  <!--</ul>
+  </nav>-->
+  <br>
+  <br>
   <div class="betgame">
     <h1>Coin Toss Game</h1>
     <h3>become rich or broke idk</h3>
@@ -87,6 +99,10 @@
     <p id="ver">Version x.x.x</p>
     <p>Created by <a href="https://mcoded.xyz" target="_blank">mcoded.xyz</a><br><a href="about.html" target="popup" onclick="window.open('about.html','name','width=819,height=658')">About this site</a> - <a href="changelog.txt" target="popup" onclick="window.open('changelog.txt','name','width=819,height=658')">Changelogs</a> - <a href="https://github.com/RealMCoded/the-most-epic-clicker-game-ever" target="_blank">GitHub</a></p>
   </footer>
+  <!--<div class="SaveDataDiv">
+    <br>
+    <h1>Your save data</h1>
+  </div>-->
   <!--Run da game's code-->
    <script src="script.js"></script>
   </body>
