@@ -48,6 +48,7 @@ var totalclicks_thisSession=0
 var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
+var grantedAch = [null]
 
 //Get items, parse them, then separeate them into their own variables.
 var json = httpGet("data.json")
@@ -58,6 +59,9 @@ var ach = json.achievements
 var lvlrewards = json.lvlrewards
 
 //Print out json categories
+console.log("JSON ITEMS")
+console.table(json)
+
 console.log("STORE ITEMS")
 console.table(items)
 
@@ -339,7 +343,7 @@ function loadAch() {
   for(var i = 0; i < ach.length; i++) {
 
     let img = document.createElement("img")
-    if (UrlExists(`./ach/${i}/not-grant.png`)) {img.setAttribute("src",`./ach/${i}/not-grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
+    if (UrlExists(`./ach/${i}/not_grant.png`)) {img.setAttribute("src",`./ach/${i}/not_grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
     img.setAttribute("id",`ach_img_${i}`);
     news.appendChild(img)
 
@@ -352,6 +356,11 @@ function loadAch() {
     p.setAttribute("id",`ach_p_desc_${i}`);
     p.innerHTML = ach[i].description;
     news.appendChild(p);
+
+    let p2 = document.createElement("p");
+    p2.setAttribute("id",`ach_p_grantstat_${i}`);
+    p2.innerHTML = "<font color=FF0000>You do not have this achievement.</font>";
+    news.appendChild(p2);
 
     let br = document.createElement("hr")
     br.setAttribute("id",`ach_hr_${i}`);
@@ -370,7 +379,21 @@ function loadAch() {
 }
 
 function grantAch(achID){
+  let want = achID //easier to define it here than call arguments[0] every time lol
+      grantedAch.push(want) //Add it to a list so the game knows you have it. Even though i think it doesn't matter. Maybe later when i add saving?
 
+      /*let btn = document.getElementById(`skn_btn_${want}`)
+      btn.innerHTML = "Equip";
+      btn.setAttribute("onclick",`equipskin('${want}');`);*/
+
+      let img = document.getElementById(`ach_img_${want}`)
+      if (UrlExists(`./ach/${want}/grant.png`)) {img.setAttribute("src",`./ach/${want}/grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
+
+      let p = document.getElementById(`ach_p_grantstat_${want}`)
+      p.innerHTML = "<font color=c9b340>You have this achievement!</font>";
+
+      achget.play()
+      //equipskin(skn)
 }
 
 //end of ach code lolo
