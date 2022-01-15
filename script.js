@@ -436,6 +436,23 @@ function clickev() {
     score = score +1
   }
 
+  //Click Achievements
+  if (totalclicks_thisSession == 1){
+    grantAch(0)
+  } else if (totalclicks_thisSession == 10){
+    grantAch(1)
+  } else if (totalclicks_thisSession == 100){
+    grantAch(2)
+  } else if (totalclicks_thisSession == 1000){
+    grantAch(3)
+  } else if (totalclicks_thisSession == 10000){
+    grantAch(4)
+  } else if (totalclicks_thisSession == 100000){
+    grantAch(5)
+  } else if (totalclicks_thisSession == 1000000){
+    grantAch(6)
+  }
+
   //Skin events
   /*if (true){ //parce true for now to test
       if (getRandomInt(10) == 1){ // 1/100 chance
@@ -581,7 +598,9 @@ function getRandomInt(max) {
 }
 
 function translateAchRarity(rarID){
-  if (rarID == 0) {
+  if (rarID == -1) {
+    return "<font color=\"#eddcd5\">Freebie</font>"
+  } else if (rarID == 0) {
     return "<font color=\"#c2bab7\">Common</font>"
   } else if (rarID == 1) {
     return "<font color=\"#c7c781\">Uncommon</font>"

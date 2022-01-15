@@ -21,18 +21,22 @@
       {"name":"Default but cooler", "price":125, "description":"b sides"},
       {"name":"Moden", "price":225, "description":"Clean & Simplistic"},
       {"name":"Idiot!", "price":325, "description":"<b>YOU ARE AN IDIOT!<br>HAHAHAHAHAHAHAHAHAHAHAHAHA!</b><br><i>note: this skin flashes when clicked, may cause eye strain when clicked too fast.</i>"},
-      {"name":"Windows 95", "price":0, "description":"<font color=#008282><a onClick=egg()>Are you ready to start?</a></font>"}
+      {"name":"Windows 95", "price":420, "description":"-5 Point discount just for you and no one else!!<br><font color=#008282><a onClick=egg()>Are you ready to start?</a></font>"}
     ],
     "achievements":[
-      {"name":"Test", "description":"Test Test Test!", "rarity": 0, "reward": null},
-      {"name":"Test", "description":"Test Test Test!", "rarity": 1, "reward": null},
-      {"name":"Test", "description":"Test Test Test!", "rarity": 2, "reward": null},
-      {"name":"Test", "description":"Test Test Test!", "rarity": 3, "reward": null},
-      {"name":"Test", "description":"Test Test Test!", "rarity": 4, "reward": null},
-      {"name":"Test", "description":"Test Test Test!", "rarity": 5, "reward": null}
+      {"name":"First click!", "description":"The first of many", "rarity": -1, "reward": null},
+      {"name":"10 clicks!", "description":"That's like clicking the mouse button 10 times or something", "rarity": -1, "reward": null},
+      {"name":"100 clicks", "description":"Welcome to Level 1!", "rarity": 0, "reward": null},
+      {"name":"1,000 clicks!", "description":"That's a lot of clicks!", "rarity": 1, "reward": null},
+      {"name":"10,000 clicks!", "description":"That's a lot of clicks!", "rarity": 2, "reward": null},
+      {"name":"100,000 clicks!", "description":"Why stop here?", "rarity": 3, "reward": null},
+      {"name":"1,000,000 clicks!", "description":"You might need to reconsider your life choices.<br>and get a new mouse.", "rarity": 4, "reward": null}
     ],
     "lvlrewards":[
-      {"rewardType": 0, "amount": 34},
+      {"rewardType": 0, "amount": 50},
+      {"rewardType": 0, "amount": 100},
+      {"rewardType": 1, "amount": 1},
+      {"rewardType": 0, "amount": 150},
       {"rewardType": 1, "amount": 2}
     ],
     "_OLD":[
