@@ -22,7 +22,7 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.7"
+const version = "0.1.7b"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //print sum shit
@@ -159,8 +159,6 @@ function buyitem(itm) {
         clickerbuddyadd=10
       } else if (want == 11){
         clickerbuddyadd=100
-      } else if (want == 12) {
-        score = score*2
       }
     } else {
       if (!itemsOwned.includes(items[want].requireditem)) {
