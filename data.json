@@ -8,12 +8,11 @@
       {"name":"Click x7", "price":1100, "description":"Gives you x7 your current click rate", "requireditem":"4"},
       {"name":"Click x8", "price":1300, "description":"Gives you x8 your current click rate", "requireditem":"5"},
       {"name":"Clicker Buddy - Weak", "price":250, "description":"Hire a buddy to help you click.", "requireditem":null},
-      {"name":"Clicker Buddy - Below Average", "price":500, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Josh.", "requireditem":null},
-      {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":null},
-      {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":null},
-      {"name":"Clicker Buddy - Strong", "price":2763, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":null},
-      {"name":"x2 your Current Score - One time use", "price":0, "description":"Double your current score by 2.<br>The catch is you can <b>only use it once</b>.", "requireditem":null},
-      {"name":"Clicker Buddy Multiplication", "price":1500, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null}
+      {"name":"Clicker Buddy - Below Average", "price":500, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Josh.", "requireditem":"8"},
+      {"name":"Clicker Buddy - Normal", "price":750, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry James.", "requireditem":"9"},
+      {"name":"Clicker Buddy - Above Average", "price":1000, "description":"Hire a buddy to help you click.\nThis also fires your old buddy, Sorry Mark.", "requireditem":"10"},
+      {"name":"Clicker Buddy - Strong", "price":27630, "description":"Hire a buddy to help you click.\nThis also fires your old buddy. Sorry Thomas.", "requireditem":"11"},
+      {"name":"Clicker Buddy Multiplication", "price":15000, "description":"Clicker Buddies can use your Click Multiplier!", "requireditem":null}
     ],
     "skins":[
       {"name":"Default", "price":0, "description":"Default smile"},
