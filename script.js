@@ -22,7 +22,7 @@ stu's todo list o' shit:
 */
 
 //Set Version
-const version = "0.1.7b"
+const version = "0.1.8"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
 //print sum shit
