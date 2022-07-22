@@ -507,35 +507,49 @@ function saveGame(){
       return;
     }
   }
-  /*
-  var score=0
-  var angle = 0
-  var curskn=0
-  var level = 0
-  var clickerbuddyadd=0
-  var nextlvl = 100
-  var levelprogres=0
-  var totalclicks_thisSession=0
-  var daman = document.getElementById('img')
-  var itemsOwned = [null]
-  var skinsOwned = [null, '0']
-  var grantedAch = [null]
-  var canBakeCookies = false
-  */
   let data = {
+    score: score,
+    curskn: curskn,
+    level: level,
+    clickerbuddyadd: clickerbuddyadd,
+    nextlvl: nextlvl,
+    levelprogres: levelprogres,
+    totalclicks_thisSession: totalclicks_thisSession,
+    itemsOwned: itemsOwned,
+    skinsOwned: skinsOwned,
+    grantedAch: grantedAch,
+    canBakeCookies: canBakeCookies
   }
+  console.log(data)
   document.cookie = `the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=${JSON.stringify(data)}`
+  alert("Game Saved!")
 }
 
 function loadGame(){
   let x = document.cookie;
   let y = x.split("=")[1];
   let data = JSON.parse(y);
-  console.log(y)
+
+  //set all the variables to the data
+  score = data.score;
+  curskn = data.curskn;
+  level = data.level;
+  clickerbuddyadd = data.clickerbuddyadd;
+  nextlvl = data.nextlvl;
+  levelprogres = data.levelprogres;
+  totalclicks_thisSession = data.totalclicks_thisSession;
+  itemsOwned = data.itemsOwned;
+  skinsOwned = data.skinsOwned;
+  grantedAch = data.grantedAch;
+  canBakeCookies = data.canBakeCookies;
+
+  console.log(data)
+  alert("Game Loaded!")
 }
 
 function deleteGame(){
   document.cookie = "the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  alert("Game Deleted!")
 }
 
 //end of Save Data Management
