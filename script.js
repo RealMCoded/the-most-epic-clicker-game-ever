@@ -49,6 +49,7 @@ var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
 var grantedAch = [null]
+var canBakeCookies = false
 
 //Get items, parse them, then separeate them into their own variables.
 var json = httpGet("data.json")
@@ -495,6 +496,49 @@ function chancegame(){
   },5000);
 }
 }
+
+//Save Data Management
+
+function saveGame(){
+  if(canBakeCookies == false){
+    if(confirm("To save the game, we need permission to bake some cookies. Can we?")){
+      canBakeCookies = true
+    } else {
+      return;
+    }
+  }
+  /*
+  var score=0
+  var angle = 0
+  var curskn=0
+  var level = 0
+  var clickerbuddyadd=0
+  var nextlvl = 100
+  var levelprogres=0
+  var totalclicks_thisSession=0
+  var daman = document.getElementById('img')
+  var itemsOwned = [null]
+  var skinsOwned = [null, '0']
+  var grantedAch = [null]
+  var canBakeCookies = false
+  */
+  let data = {
+  }
+  document.cookie = `the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=${JSON.stringify(data)}`
+}
+
+function loadGame(){
+  let x = document.cookie;
+  let y = x.split("=")[1];
+  let data = JSON.parse(y);
+  console.log(y)
+}
+
+function deleteGame(){
+  document.cookie = "the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
+
+//end of Save Data Management
 
 //Other Scripts
 

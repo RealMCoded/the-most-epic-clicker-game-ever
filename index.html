@@ -22,9 +22,10 @@
   </head>
   <body id="dabase" onload="loadStore(); loadSkins(); loadAch()">
   <center>
-    <button type="button" onClick="alert('hi')">Save Data</button>
-    <button type="button" onClick="alert('hi')">Load Data</button>
-    <button type="button" onClick="alert('hi')">Delete Save Data</button>
+    <button type="button" onClick="saveGame();">Save Data</button>
+    <button type="button" onClick="loadGame();">Load Data</button>
+    <button type="button" onClick="deleteGame();">Delete Save Data</button>
+    <br>
     <p id="whoops">If you are seeing this it's probably because the game is loading or an error has occured.</p>
   <audio id="mus" controls loop>
     <source id="datune" src="loop.mp3" type="audio/mpeg">
