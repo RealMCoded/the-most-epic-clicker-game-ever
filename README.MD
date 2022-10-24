@@ -1,6 +1,6 @@
 # THE MOST EPIC CLICKER GAME EVER!!!!!
 
-[Click here to launch the game.](https://realmcoded.github.io/the-most-epic-clicker-game-ever/)
+[Click here to launch the game in your browser.](https://realmcoded.github.io/the-most-epic-clicker-game-ever/)
 
 This is a game i made in school during breaks to improve my js skills.
 
@@ -9,7 +9,7 @@ This is 100% raw js. no libraries, nothing else but pure js
 
 ## Requirements
 
-There aren't really any requirements since this *is* as web app. However, if you do want to play offline (for some reason), you need to install [Python](https://www.python.org/downloads/) to start a local server (http.server).
+There aren't really any requirements since this *is* as web app. However, if you do want to play offline (for some reason), you can check out the [Offline Play](#offline-play) section for more info.
 
 ## Offline Play
 
@@ -17,4 +17,4 @@ There aren't really any requirements since this *is* as web app. However, if you
 
 [Click here to download the latest dev version](https://github.com/RealMCoded/the-most-epic-clicker-game-ever/archive/refs/heads/dev.zip)
 
-Speaking of playing offline, Double check that you have [Python](https://www.python.org/downloads/) installed and run `start_local.bat` (quickest way) or `host-test-server.bat` (easier to set a custom IP and Port) to start a localhost server.
+The easiest way to play offline is to run `npx serve` (same command that is in `start_local.bat`) or any other localhost server (python3, for example: `python -m http.server`).

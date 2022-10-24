@@ -1,2 +1,2 @@
-start "" http://localhost:25565
-python -m http.server 25565
+start "" http://localhost:3000
+npx serve
