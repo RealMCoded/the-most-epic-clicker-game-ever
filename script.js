@@ -451,13 +451,6 @@ function clickev() {
   } else if (totalclicks_thisSession == 1000000){
     grantAch(6)
   }
-
-  //Skin events
-  /*if (true){ //parce true for now to test
-      if (getRandomInt(10) == 1){ // 1/100 chance
-        aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes'); //create popup
-      }
-  }*/
 }
 
 //Coin Flip Game
@@ -682,10 +675,6 @@ function debug() {
   if (arg == "oldScale"){
     daman.style.height = `160px`
     daman.style.width = `236px`
-  }
-  if (arg == "idiot"){
-      aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes');
-      return "return idiot payload lolol";
   }
 }
 
