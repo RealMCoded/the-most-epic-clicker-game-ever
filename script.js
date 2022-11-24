@@ -18,7 +18,7 @@ stu's todo list o' shit:
 
 - Add saving/loading somehow. cookies?
 - Better Item Shop Sorting. Search bar?
-- UrlExists(): async xmlhttprequest request?
+- make things async!!!
 */
 
 //Set Version
