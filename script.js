@@ -25,7 +25,7 @@ stu's todo list o' shit:
 const version = "0.1.8"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
-//print sum shit
+//Version information in console
 console.log(`THE MOST EPIC CLICKER GAME EVER!!!\n\nVersion ${version}\n\nCreated by stuartt_mcoded @ mcoded.xyz\n\nOfficial site: https://realmcoded.github.io/the-most-epic-clicker-game-ever/ \n\nSource code: https://github.com/RealMCoded/the-most-epic-clicker-game-ever`)
 
 //Init "some" SFX
@@ -647,20 +647,14 @@ function getRandomInt(max) {
 }
 
 function translateAchRarity(rarID){
-  if (rarID == -1) {
-    return "<font color=\"#eddcd5\">Freebie</font>"
-  } else if (rarID == 0) {
-    return "<font color=\"#c2bab7\">Common</font>"
-  } else if (rarID == 1) {
-    return "<font color=\"#c7c781\">Uncommon</font>"
-  } else if (rarID == 2) {
-    return "<font color=\"#c9b340\">Rare</font>"
-  } else if (rarID == 3) {
-    return "<font color=\"#ba9d0d\">Ultra-Rare</font>"
-  } else if (rarID == 4) {
-    return "<font color=\"#021057\">G O D L I K E</font>"
-  } else {
-    return "<font color=\"#F52A00\">!!ERROR - INVALID RARITY!!</font>"
+  switch(rarID) {
+    case -1: return "<font color=\"#eddcd5\">Freebie</font>"; break;
+    case 0: return "<font color=\"#c2bab7\">Common</font>"; break;
+    case 1: return "<font color=\"#c7c781\">Uncommon</font>"; break;
+    case 2: return "<font color=\"#c9b340\">Rare</font>"; break;
+    case 3: return "<font color=\"#ba9d0d\">Ultra-Rare</font>"; break;
+    case 4: return "<font color=\"#021057\">G O D L I K E</font>"; break;
+    default: return "<font color=\"#F52A00\">!!ERROR - INVALID RARITY!!</font>"; break;
   }
 }
 
