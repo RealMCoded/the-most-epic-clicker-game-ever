@@ -5,7 +5,7 @@
 This is a game i made in school during breaks to improve my js skills.
 
 This is 100% raw js. no libraries, nothing else but pure js 
-\*sniff* *mmmm* the fresh smell of raw javascript...
+\*sniff* *mmmm* the fresh smell of raw javascript without jQuery...
 
 ## Requirements
 

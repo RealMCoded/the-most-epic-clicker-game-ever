@@ -2,7 +2,7 @@ Version 0.1.7
 - Added Achievements. The first round of these are just click milestones.
 - Added Level rewards. The first 5 levels have rewards right now. This can range from points to skins.
 - Replaced ASCII skin with Default but sad
-- New skin: Windows 95 - 425 Points (with an exclusive -5 point discount just for you i swear!!1) - Are you ready to start?
+- New skin: Windows 95 - 425 Points (with an exclusive -5 point discount just for you, i swear!!1) - Are you ready to start?
 
 Version 0.1.6b
 - Removed Christmas Skin.
