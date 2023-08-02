@@ -31,13 +31,6 @@
       {"name":"100,000 clicks!", "description":"Why stop here?", "rarity": 3, "reward": null},
       {"name":"1,000,000 clicks!", "description":"You might need to reconsider your life choices.<br>and get a new mouse.", "rarity": 4, "reward": null}
     ],
-    "lvlrewards":[
-      {"rewardType": 0, "amount": 50},
-      {"rewardType": 0, "amount": 100},
-      {"rewardType": 1, "amount": 1},
-      {"rewardType": 0, "amount": 150},
-      {"rewardType": 1, "amount": 2}
-    ],
     "_OLD":[
         {"name":"Event - Christmas", "price":0, "description":"Only available from 11/25 to 01/01!<br>Christmas! Just a week away!"}
     ]

@@ -74,7 +74,7 @@ console.table(ach)
 
 scaleToMobile()
 
-setRewardItem()
+document.getElementById("lvl_reward").innerHTML = `Reward: ${(level+1)*50} Points` //set next bonus points
 
 //Start of Item Related Code
 function loadStore() {
@@ -205,11 +205,11 @@ var itemloop = setInterval(function() {
 
   //check lvl. if it equal to nextlevel, progress on
   if (levelprogres >= nextlvl){
-    grantLvlReward()
+    score += (level+1)*50 //grant bonus points
     levelprogres = 0
     nextlvl = nextlvl + 100
     level++
-    setRewardItem()
+    document.getElementById("lvl_reward").innerHTML = `Reward: ${(level+1)*50} Points` //set next bonus points
   }
 
   //Update HUD
@@ -548,35 +548,6 @@ function deleteGame(){
 //end of Save Data Management
 
 //Other Scripts
-
-//Grant level reward script
-function grantLvlReward(){
-  if (level >= lvlrewards.length) {
-    console.log("PLAYER HAS EXCEEDED CAP!")
-  } else {
-    if (lvlrewards[level].rewardType == 0){ //If it's points
-      score += lvlrewards[level].amount
-    } else if (lvlrewards[level].rewardType == 1) {
-      skinsOwned.push(lvlrewards[level].amount) //Add it to a list so the game knows you have it
-      let btn = document.getElementById(`skn_btn_${lvlrewards[level].amount}`)
-      btn.innerHTML = "Equip";
-      btn.setAttribute("onclick",`equipskin('${lvlrewards[level].amount}');`);
-      equipskin(lvlrewards[level].amount)
-    }
-  }
-}
-
-function setRewardItem(){
-  if (level >= lvlrewards.length) {
-    document.getElementById("lvl_reward").innerHTML = `Reward: <font color=#ff0000>No more rewards available</font>`
-  } else {
-    if (lvlrewards[level].rewardType == 0){ //If it's points
-      document.getElementById("lvl_reward").innerHTML = `Reward: ${lvlrewards[level].amount} Points`
-    } else if (lvlrewards[level].rewardType == 1) {
-      document.getElementById("lvl_reward").innerHTML = `Reward: ${skins[lvlrewards[level].amount].name} Skin`
-    }
-  }
-}
 
 //https://stackoverflow.com/a/3646923
 function UrlExists(url)
