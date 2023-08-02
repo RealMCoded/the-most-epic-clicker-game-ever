@@ -49,7 +49,6 @@ var daman = document.getElementById('img')
 var itemsOwned = [null]
 var skinsOwned = [null, '0']
 var grantedAch = [null]
-var canBakeCookies = false
 
 //Get items, parse them, then separeate them into their own variables.
 var json = httpGet("data.json")
@@ -58,19 +57,6 @@ var items = json.items
 var skins = json.skins
 var ach = json.achievements
 var lvlrewards = json.lvlrewards
-
-//Print out json categories
-console.log("JSON ITEMS")
-console.table(json)
-
-console.log("STORE ITEMS")
-console.table(items)
-
-console.log("SKIN ITEMS")
-console.table(skins)
-
-console.log("ACHIEVEMENTS")
-console.table(ach)
 
 scaleToMobile()
 
@@ -130,9 +116,7 @@ function loadStore() {
   }
 }
 
-function buyitem(itm) {
-  let want = arguments[0] //easier to define it here than call arguments[0] every time lol
-
+function buyitem(want) {
   if (confirm("Are you sure you want to buy this item?")){
     if (items[want].price <= score && itemsOwned.includes(items[want].requireditem)) {
       itemsOwned.push(want) //Add it to a list so the game knows you have it
@@ -276,7 +260,7 @@ function loadSkins() {
 }
 
 function buyskin(skn) {
-  let want = skn //easier to define it here than call arguments[0] every time lol
+  let want = skn
 
   if (confirm("Are you sure you want to buy this skin?")){
     if (skins[want].price <= score) {
@@ -320,15 +304,12 @@ function equipskin(skn) {
   //Events
   if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
-  } else if (skn == 5){
+  } else if (skn == 6){
     document.body.style.background = "#00137F url('./skin/5/bg.png')";
-  }
-
-  /*if (skn == 5) { //Seasonal
-    document.body.style.background = "#00137F url('./skin/5/bg.png')";
+  } else if (skn == 2){
+    document.body.style.background = "#00137F url('./skin/2/bg.png')";
     document.getElementById("dabase").style.color = "white";
-  }*/
-  //scaleToMobile()
+  }
 }
 //End of Skin Related Code
 
@@ -378,21 +359,15 @@ function loadAch() {
 }
 
 function grantAch(achID){
-  let want = achID //easier to define it here than call arguments[0] every time lol
-      grantedAch.push(want) //Add it to a list so the game knows you have it. Even though i think it doesn't matter. Maybe later when i add saving?
+  grantedAch.push(achID) //Add it to a list so the game knows you have it. Even though i think it doesn't matter. Maybe later when i add saving?
 
-      /*let btn = document.getElementById(`skn_btn_${want}`)
-      btn.innerHTML = "Equip";
-      btn.setAttribute("onclick",`equipskin('${want}');`);*/
+  let img = document.getElementById(`ach_img_${achID}`)
+  if (UrlExists(`./ach/${achID}/grant.png`)) {img.setAttribute("src",`./ach/${achID}/grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
 
-      let img = document.getElementById(`ach_img_${want}`)
-      if (UrlExists(`./ach/${want}/grant.png`)) {img.setAttribute("src",`./ach/${want}/grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
+  let p = document.getElementById(`ach_p_grantstat_${achID}`)
+  p.innerHTML = "<font color=c9b340>You have this achievement!</font>";
 
-      let p = document.getElementById(`ach_p_grantstat_${want}`)
-      p.innerHTML = "<font color=c9b340>You have this achievement!</font>";
-
-      achget.play()
-      //equipskin(skn)
+  achget.play()
 }
 
 //end of ach code lolo
@@ -438,8 +413,6 @@ function clickev() {
   //Click Achievements
   if (totalclicks_thisSession == 1){
     grantAch(0)
-  } else if (totalclicks_thisSession == 10){
-    grantAch(1)
   } else if (totalclicks_thisSession == 100){
     grantAch(2)
   } else if (totalclicks_thisSession == 1000){
@@ -493,13 +466,6 @@ function chancegame(){
 //Save Data Management
 
 function saveGame(){
-  if(canBakeCookies == false){
-    if(confirm("To save the game, we need permission to bake some cookies. Can we?")){
-      canBakeCookies = true
-    } else {
-      return;
-    }
-  }
   let data = {
     score: score,
     curskn: curskn,
@@ -511,17 +477,15 @@ function saveGame(){
     itemsOwned: itemsOwned,
     skinsOwned: skinsOwned,
     grantedAch: grantedAch,
-    canBakeCookies: canBakeCookies
   }
-  console.log(data)
-  document.cookie = `the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=${JSON.stringify(data)}`
+  document.cookie = `the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=${btoa(JSON.stringify(data))}`
   alert("Game Saved!")
 }
 
 function loadGame(){
   let x = document.cookie;
   let y = x.split("=")[1];
-  let data = JSON.parse(y);
+  let data = JSON.parse(atob(y));
 
   //set all the variables to the data
   score = data.score;
@@ -534,7 +498,6 @@ function loadGame(){
   itemsOwned = data.itemsOwned;
   skinsOwned = data.skinsOwned;
   grantedAch = data.grantedAch;
-  canBakeCookies = data.canBakeCookies;
 
   console.log(data)
   alert("Game Loaded!")
@@ -543,6 +506,7 @@ function loadGame(){
 function deleteGame(){
   document.cookie = "the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   alert("Game Deleted!")
+  location.reload()
 }
 
 //end of Save Data Management
@@ -630,9 +594,7 @@ function translateAchRarity(rarID){
 }
 
 //DEBUG STUFF
-function debug() {
-  let arg = arguments[0]
-
+function debug(arg) {
   if (arg == "forceMobile"){
     isMobile = true
     scaleToMobile()
@@ -644,7 +606,7 @@ function debug() {
 }
 
 function egg(){
-  if (curskn == 5) {
+  if (curskn == 6) {
   document.getElementById("datune").src = "./skin/5/loop.mp3"
   document.getElementById("mus").load()
   }
