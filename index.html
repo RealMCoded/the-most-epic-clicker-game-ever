@@ -22,6 +22,10 @@
   </head>
   <body id="dabase" onload="loadStore(); loadSkins(); loadAch()">
   <center>
+    <img src="./logo.png" id="logo" width="50%">
+    <p>a <font color="#ff0000">really</font> bad clicker game brought to you by <a href="https://mcoded.xyz" target="_blank">mcoded.xyz</a></p>
+    <hr>
+    <br>
     <p id="whoops">If you are seeing this it's probably because the game is loading or an error has occured.</p>
   <audio id="mus" controls loop>
     <source id="datune" src="loop.mp3" type="audio/mpeg">
@@ -95,6 +99,14 @@
     <input id="chance_smit" type="submit" onclick="chancegame()">
     <hr>
   </div>
+  <div class="data-management">
+    <h1>Data manager!!!</h1>
+    <h3>manage your data</h3>
+    <button type="button" onClick="saveGame();">Save Game</button>
+    <button type="button" onClick="loadGame();">Load Game</button>
+    <button type="button" onClick="deleteGame();">Delete Save Data</button>
+  </div>
+  <hr>
   <footer>
     <p id="ver">Version x.x.x</p>
     <p>Created by <a href="https://mcoded.xyz" target="_blank">mcoded.xyz</a><br><a href="about.html" target="popup" onclick="window.open('about.html','name','width=819,height=658')">About this site</a> - <a href="changelog.txt" target="popup" onclick="window.open('changelog.txt','name','width=819,height=658')">Changelogs</a> - <a href="https://github.com/RealMCoded/the-most-epic-clicker-game-ever" target="_blank">GitHub</a></p>
@@ -104,6 +116,6 @@
     <h1>Your save data</h1>
   </div>-->
   <!--Run da game's code-->
-   <script src="script.js"></script>
+   <script defer src="script.js"></script>
   </body>
 </html>

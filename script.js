@@ -18,14 +18,14 @@ stu's todo list o' shit:
 
 - Add saving/loading somehow. cookies?
 - Better Item Shop Sorting. Search bar?
-- UrlExists(): async xmlhttprequest request?
+- make things async!!!
 */
 
 //Set Version
-const version = "0.1.7b"
+const version = "0.1.8"
 document.getElementById("ver").innerHTML= `Version ${version}`
 
-//print sum shit
+//Version information in console
 console.log(`THE MOST EPIC CLICKER GAME EVER!!!\n\nVersion ${version}\n\nCreated by stuartt_mcoded @ mcoded.xyz\n\nOfficial site: https://realmcoded.github.io/the-most-epic-clicker-game-ever/ \n\nSource code: https://github.com/RealMCoded/the-most-epic-clicker-game-ever`)
 
 //Init "some" SFX
@@ -58,22 +58,9 @@ var skins = json.skins
 var ach = json.achievements
 var lvlrewards = json.lvlrewards
 
-//Print out json categories
-console.log("JSON ITEMS")
-console.table(json)
-
-console.log("STORE ITEMS")
-console.table(items)
-
-console.log("SKIN ITEMS")
-console.table(skins)
-
-console.log("ACHIEVEMENTS")
-console.table(ach)
-
 scaleToMobile()
 
-setRewardItem()
+document.getElementById("lvl_reward").innerHTML = `Reward: ${(level+1)*50} Points` //set next bonus points
 
 //Start of Item Related Code
 function loadStore() {
@@ -129,9 +116,7 @@ function loadStore() {
   }
 }
 
-function buyitem(itm) {
-  let want = arguments[0] //easier to define it here than call arguments[0] every time lol
-
+function buyitem(want) {
   if (confirm("Are you sure you want to buy this item?")){
     if (items[want].price <= score && itemsOwned.includes(items[want].requireditem)) {
       itemsOwned.push(want) //Add it to a list so the game knows you have it
@@ -204,11 +189,11 @@ var itemloop = setInterval(function() {
 
   //check lvl. if it equal to nextlevel, progress on
   if (levelprogres >= nextlvl){
-    grantLvlReward()
+    score += (level+1)*50 //grant bonus points
     levelprogres = 0
     nextlvl = nextlvl + 100
     level++
-    setRewardItem()
+    document.getElementById("lvl_reward").innerHTML = `Reward: ${(level+1)*50} Points` //set next bonus points
   }
 
   //Update HUD
@@ -275,7 +260,7 @@ function loadSkins() {
 }
 
 function buyskin(skn) {
-  let want = skn //easier to define it here than call arguments[0] every time lol
+  let want = skn
 
   if (confirm("Are you sure you want to buy this skin?")){
     if (skins[want].price <= score) {
@@ -319,15 +304,12 @@ function equipskin(skn) {
   //Events
   if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
-  } else if (skn == 5){
-    document.body.style.background = "#00137F url('./skin/5/bg.png')";
-  }
-
-  /*if (skn == 5) { //Seasonal
-    document.body.style.background = "#00137F url('./skin/5/bg.png')";
+  } else if (skn == 6){
+    document.body.style.background = "#00137F url('./skin/6/bg.png')";
+  } else if (skn == 2){
+    document.body.style.background = "#00137F url('./skin/2/bg.png')";
     document.getElementById("dabase").style.color = "white";
-  }*/
-  //scaleToMobile()
+  }
 }
 //End of Skin Related Code
 
@@ -377,21 +359,15 @@ function loadAch() {
 }
 
 function grantAch(achID){
-  let want = achID //easier to define it here than call arguments[0] every time lol
-      grantedAch.push(want) //Add it to a list so the game knows you have it. Even though i think it doesn't matter. Maybe later when i add saving?
+  grantedAch.push(achID) //Add it to a list so the game knows you have it. Even though i think it doesn't matter. Maybe later when i add saving?
 
-      /*let btn = document.getElementById(`skn_btn_${want}`)
-      btn.innerHTML = "Equip";
-      btn.setAttribute("onclick",`equipskin('${want}');`);*/
+  let img = document.getElementById(`ach_img_${achID}`)
+  if (UrlExists(`./ach/${achID}/grant.png`)) {img.setAttribute("src",`./ach/${achID}/grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
 
-      let img = document.getElementById(`ach_img_${want}`)
-      if (UrlExists(`./ach/${want}/grant.png`)) {img.setAttribute("src",`./ach/${want}/grant.png`)} else {img.setAttribute("src",`./ach/missing.png`)}
+  let p = document.getElementById(`ach_p_grantstat_${achID}`)
+  p.innerHTML = "<font color=c9b340>You have this achievement!</font>";
 
-      let p = document.getElementById(`ach_p_grantstat_${want}`)
-      p.innerHTML = "<font color=c9b340>You have this achievement!</font>";
-
-      achget.play()
-      //equipskin(skn)
+  achget.play()
 }
 
 //end of ach code lolo
@@ -437,8 +413,6 @@ function clickev() {
   //Click Achievements
   if (totalclicks_thisSession == 1){
     grantAch(0)
-  } else if (totalclicks_thisSession == 10){
-    grantAch(1)
   } else if (totalclicks_thisSession == 100){
     grantAch(2)
   } else if (totalclicks_thisSession == 1000){
@@ -450,13 +424,6 @@ function clickev() {
   } else if (totalclicks_thisSession == 1000000){
     grantAch(6)
   }
-
-  //Skin events
-  /*if (true){ //parce true for now to test
-      if (getRandomInt(10) == 1){ // 1/100 chance
-        aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes'); //create popup
-      }
-  }*/
 }
 
 //Coin Flip Game
@@ -496,36 +463,55 @@ function chancegame(){
 }
 }
 
+//Save Data Management
+
+function saveGame(){
+  let data = {
+    score: score,
+    curskn: curskn,
+    level: level,
+    clickerbuddyadd: clickerbuddyadd,
+    nextlvl: nextlvl,
+    levelprogres: levelprogres,
+    totalclicks_thisSession: totalclicks_thisSession,
+    itemsOwned: itemsOwned,
+    skinsOwned: skinsOwned,
+    grantedAch: grantedAch,
+  }
+  document.cookie = `the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=${btoa(JSON.stringify(data))}`
+  alert("Game Saved!")
+}
+
+function loadGame(){
+  let x = document.cookie;
+  let y = x.split("=")[1];
+  let data = JSON.parse(atob(y));
+
+  //set all the variables to the data
+  score = data.score;
+  curskn = data.curskn;
+  level = data.level;
+  clickerbuddyadd = data.clickerbuddyadd;
+  nextlvl = data.nextlvl;
+  levelprogres = data.levelprogres;
+  totalclicks_thisSession = data.totalclicks_thisSession;
+  itemsOwned = data.itemsOwned;
+  skinsOwned = data.skinsOwned;
+  grantedAch = data.grantedAch;
+
+  console.log(data)
+  alert("Game Loaded!")
+}
+
+function deleteGame(){
+  document.cookie = "the-most-epic-clicker-game-ever-save-data-do-not-edit-me-plz-thx-u=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  alert("Game Deleted!")
+  location.reload()
+}
+
+//end of Save Data Management
+
 //Other Scripts
-
-//Grant level reward script
-function grantLvlReward(){
-  if (level >= lvlrewards.length) {
-    console.log("PLAYER HAS EXCEEDED CAP!")
-  } else {
-    if (lvlrewards[level].rewardType == 0){ //If it's points
-      score += lvlrewards[level].amount
-    } else if (lvlrewards[level].rewardType == 1) {
-      skinsOwned.push(lvlrewards[level].amount) //Add it to a list so the game knows you have it
-      let btn = document.getElementById(`skn_btn_${lvlrewards[level].amount}`)
-      btn.innerHTML = "Equip";
-      btn.setAttribute("onclick",`equipskin('${lvlrewards[level].amount}');`);
-      equipskin(lvlrewards[level].amount)
-    }
-  }
-}
-
-function setRewardItem(){
-  if (level >= lvlrewards.length) {
-    document.getElementById("lvl_reward").innerHTML = `Reward: <font color=#ff0000>No more rewards available</font>`
-  } else {
-    if (lvlrewards[level].rewardType == 0){ //If it's points
-      document.getElementById("lvl_reward").innerHTML = `Reward: ${lvlrewards[level].amount} Points`
-    } else if (lvlrewards[level].rewardType == 1) {
-      document.getElementById("lvl_reward").innerHTML = `Reward: ${skins[lvlrewards[level].amount].name} Skin`
-    }
-  }
-}
 
 //https://stackoverflow.com/a/3646923
 function UrlExists(url)
@@ -596,27 +582,19 @@ function getRandomInt(max) {
 }
 
 function translateAchRarity(rarID){
-  if (rarID == -1) {
-    return "<font color=\"#eddcd5\">Freebie</font>"
-  } else if (rarID == 0) {
-    return "<font color=\"#c2bab7\">Common</font>"
-  } else if (rarID == 1) {
-    return "<font color=\"#c7c781\">Uncommon</font>"
-  } else if (rarID == 2) {
-    return "<font color=\"#c9b340\">Rare</font>"
-  } else if (rarID == 3) {
-    return "<font color=\"#ba9d0d\">Ultra-Rare</font>"
-  } else if (rarID == 4) {
-    return "<font color=\"#021057\">G O D L I K E</font>"
-  } else {
-    return "<font color=\"#F52A00\">!!ERROR - INVALID RARITY!!</font>"
+  switch(rarID) {
+    case -1: return "<font color=\"#eddcd5\">Freebie</font>"; break;
+    case 0: return "<font color=\"#c2bab7\">Common</font>"; break;
+    case 1: return "<font color=\"#c7c781\">Uncommon</font>"; break;
+    case 2: return "<font color=\"#c9b340\">Rare</font>"; break;
+    case 3: return "<font color=\"#ba9d0d\">Ultra-Rare</font>"; break;
+    case 4: return "<font color=\"#021057\">G O D L I K E</font>"; break;
+    default: return "<font color=\"#F52A00\">!!ERROR - INVALID RARITY!!</font>"; break;
   }
 }
 
 //DEBUG STUFF
-function debug() {
-  let arg = arguments[0]
-
+function debug(arg) {
   if (arg == "forceMobile"){
     isMobile = true
     scaleToMobile()
@@ -625,15 +603,11 @@ function debug() {
     daman.style.height = `160px`
     daman.style.width = `236px`
   }
-  if (arg == "idiot"){
-      aWindow = window.open("./annoying_popups/idiot/index.html", "_blank", 'menubar=no, status=no, toolbar=no, resizable=no, width=357, height=330, titlebar=no, alwaysRaised=yes');
-      return "return idiot payload lolol";
-  }
 }
 
 function egg(){
-  if (curskn == 5) {
-  document.getElementById("datune").src = "./skin/5/loop.mp3"
+  if (curskn == 6) {
+  document.getElementById("datune").src = "./skin/6/loop.mp3"
   document.getElementById("mus").load()
   }
 }
