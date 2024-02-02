@@ -305,7 +305,7 @@ function equipskin(skn) {
   if (skn == 3) { //Modern
     document.body.style.fontFamily = "Calibri, sans-serif"
   } else if (skn == 6){
-    document.body.style.background = "#00137F url('./skin/5/bg.png')";
+    document.body.style.background = "#00137F url('./skin/6/bg.png')";
   } else if (skn == 2){
     document.body.style.background = "#00137F url('./skin/2/bg.png')";
     document.getElementById("dabase").style.color = "white";
@@ -607,7 +607,7 @@ function debug(arg) {
 
 function egg(){
   if (curskn == 6) {
-  document.getElementById("datune").src = "./skin/5/loop.mp3"
+  document.getElementById("datune").src = "./skin/6/loop.mp3"
   document.getElementById("mus").load()
   }
 }
