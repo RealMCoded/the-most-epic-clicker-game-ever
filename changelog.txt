@@ -1,3 +1,11 @@
+Version 0.1.8
+- Data manager (you can save your game now)
+- Level Rewards are now points only. No more free skins!
+    - The current formula for points is: (current_level+1)*50
+- Christmas skin is back 24/7 now wow
+- Cool logo (last seccond addition)
+- Last official update.
+
 Version 0.1.7
 - Added Achievements. The first round of these are just click milestones.
 - Added Level rewards. The first 5 levels have rewards right now. This can range from points to skins.
@@ -20,7 +28,7 @@ Version 0.1.5
 - Backend changes (cleaned up some code for example)
 
 Version 0.1.4
-- New Skin: Moden - 225 Points - Clean & Simplistic
+- New Skin: Modern - 225 Points - Clean & Simplistic
 - Mobile clicker icon scaling (you can force it by calling 'debug("forceMobile")' on pc)
 - changed prices for Click x3, Click x4, Click x7 and Click x8
 - Backend changes (mainly cleaning)

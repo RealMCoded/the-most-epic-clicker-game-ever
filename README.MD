@@ -1,4 +1,8 @@
-# THE MOST EPIC CLICKER GAME EVER!!!!!
+# THIS PROJECT IS EOL!
+
+Thanks for playing "THE MOST EPIC CLICKER GAME EVER!!!!!". No more updates are planned.
+
+## THE MOST EPIC CLICKER GAME EVER!!!!!
 
 [Click here to launch the game in your browser.](https://realmcoded.github.io/the-most-epic-clicker-game-ever/)
 
